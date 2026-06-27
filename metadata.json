@@ -1,0 +1,6 @@
+{
+  "name": "ZenterPrime",
+  "description": "A premium, modern, and trustworthy landing website for ZenterPrime accounting software. Features GST management, real-time interactive dashboard previews, screenshot galleries, a feedback beta system, offline support FAQ, and modern animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
