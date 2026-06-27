@@ -26,8 +26,8 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
           {/* Brand Col */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-9 h-9 rounded-xl bg-violet-600 flex items-center justify-center shadow-md shadow-violet-950">
-                <span className="text-white font-display font-extrabold text-lg">Z</span>
+              <div className="w-9 h-9 rounded-xl overflow-hidden shadow-md shadow-violet-950 bg-white">
+                <img src="/ZenterPrime New Logo.png" alt="ZenterPrime Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <span className="font-display font-bold text-lg text-white">
                 Zenter<span className="text-violet-400">Prime</span>

@@ -44,8 +44,8 @@ export default function Header({ onDownloadClick, onFeedbackClick }: HeaderProps
           
           {/* Logo */}
           <a href="#" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center shadow-md shadow-violet-200 group-hover:scale-105 transition-transform duration-200">
-              <span className="text-white font-display font-extrabold text-xl tracking-tight">Z</span>
+            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md shadow-violet-200 group-hover:scale-105 transition-transform duration-200 bg-white">
+              <img src="/ZenterPrime New Logo.png" alt="ZenterPrime Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
             <div>
               <span className="font-display font-bold text-xl tracking-tight text-slate-900">
