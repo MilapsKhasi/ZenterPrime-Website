@@ -29,8 +29,8 @@ export default function DownloadSection({ isDownloadModalOpen, setIsDownloadModa
       name: 'Windows 10 / 11',
       status: 'available',
       iconName: 'Monitor',
-      badge: 'v1.0.2-Beta (Active)',
-      extension: 'ZenterPrime.Setup.1.0.0.exe (45.2 MB)'
+      badge: 'v26.06.02-Beta (Active)',
+      extension: 'ZenterPrime.Setup.26.6.2.exe (45.2 MB)'
     },
     {
       name: 'Android Mobile App',
@@ -75,8 +75,8 @@ export default function DownloadSection({ isDownloadModalOpen, setIsDownloadModa
 
   const triggerRealDownload = () => {
     const link = document.createElement('a');
-    link.href = 'https://github.com/MilapsKhasi/Makzon-Developers/releases/download/zenterprime-beta/ZenterPrime.Setup.1.0.0.exe';
-    link.download = 'ZenterPrime.Setup.1.0.0.exe';
+    link.href = 'https://github.com/MilapsKhasi/Makzon-Developers/releases/download/zenterprime-beta/ZenterPrime.Setup.26.6.2.exe';
+    link.download = 'ZenterPrime.Setup.26.6.2.exe';
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
     document.body.appendChild(link);
@@ -258,7 +258,7 @@ export default function DownloadSection({ isDownloadModalOpen, setIsDownloadModa
                     <div className="flex items-center justify-between text-xs font-bold text-slate-600">
                       <span className="flex items-center gap-1.5">
                         <Loader2 className="w-3.5 h-3.5 animate-spin text-violet-600" />
-                        Downloading ZenterPrime.Setup.1.0.0.exe
+                        Downloading ZenterPrime.Setup.26.6.2.exe
                       </span>
                       <span>{downloadProgress}%</span>
                     </div>
@@ -285,7 +285,7 @@ export default function DownloadSection({ isDownloadModalOpen, setIsDownloadModa
                       <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                       <div>
                         <p className="font-bold text-sm">Download Completed!</p>
-                        <p className="text-xs mt-0.5">The installer `ZenterPrime.Setup.1.0.0.exe` has been fetched locally to your device.</p>
+                        <p className="text-xs mt-0.5">The installer `ZenterPrime.Setup.26.6.2.exe` has been fetched locally to your device.</p>
                       </div>
                     </div>
 
@@ -299,7 +299,7 @@ export default function DownloadSection({ isDownloadModalOpen, setIsDownloadModa
                         <div className="flex items-start text-xs text-slate-600">
                           <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-800 font-bold flex items-center justify-center shrink-0 mr-2.5">1</div>
                           <div>
-                            <span className="font-bold text-slate-800">Run the Installer:</span> Open the downloaded `ZenterPrime.Setup.1.0.0.exe` file from your browser downloads directory.
+                            <span className="font-bold text-slate-800">Run the Installer:</span> Open the downloaded `ZenterPrime.Setup.26.6.2.exe` file from your browser downloads directory.
                           </div>
                         </div>
 
