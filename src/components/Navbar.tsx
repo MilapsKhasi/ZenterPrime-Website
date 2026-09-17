@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, RefreshCw, Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Download, ShieldCheck } from 'lucide-react';
 
 export type AppView = 'landing' | 'renew' | 'reactivate';
 
@@ -17,6 +17,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   onGetStarted 
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 5);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -31,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       onNavigate('landing');
       setTimeout(() => {
         onScrollTo(sectionId);
-      }, 50);
+      }, 60);
     } else {
       onScrollTo(sectionId);
     }
@@ -40,108 +51,107 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header 
       id="main-navbar" 
-      className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-none transition-all"
+      className={`sticky top-0 z-50 w-full bg-white border-b border-[#E5E7EB] transition-colors ${
+        isScrolled ? 'border-[#D1D5DB]' : 'border-[#E5E7EB]'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-[72px]">
           
-          {/* Logo Branding */}
-          <div className="flex items-center">
+          {/* Left: Logo + ZenterPrime + v7.3 Desktop badge */}
+          <div className="flex items-center gap-3 shrink-0">
             <a 
               id="brand-logo-link" 
               href="#" 
               onClick={handleLogoClick}
-              className="flex items-center gap-3 text-decoration-none group select-none cursor-pointer"
+              className="flex items-center gap-3 text-decoration-none select-none cursor-pointer"
             >
-              {/* Rounded purple circle with white 'Z' in Fredoka font */}
               <div 
                 id="brand-logo-icon" 
-                className="w-10 h-10 rounded-full bg-[#3b28cc] flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-105"
+                className="w-9 h-9 rounded-[8px] bg-[#6D28D9] flex items-center justify-center text-white shrink-0 font-fredoka text-xl font-bold"
               >
-                <span 
-                  id="brand-logo-letter" 
-                  className="font-fredoka text-white text-2xl font-bold leading-none select-none"
-                >
-                  Z
-                </span>
+                Z
               </div>
 
-              {/* Branding text 'ZenterPrime' */}
-              <div className="flex flex-col">
+              <div className="flex items-center gap-2.5">
                 <span 
                   id="brand-name-text" 
-                  className="text-slate-950 text-xl font-bold tracking-tight leading-tight"
+                  className="text-slate-900 text-lg font-bold tracking-tight"
                 >
                   ZenterPrime
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono tracking-wider font-semibold">
-                  v7.3 DESKTOP
+                <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-[4px] text-[11px] font-medium bg-[#F3F4F6] text-slate-700 border border-[#E5E7EB]">
+                  v7.3 Desktop
                 </span>
               </div>
             </a>
           </div>
 
-          {/* Desktop Navigation Links */}
+          {/* Center: Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-7">
             <button 
               id="nav-link-features" 
               onClick={() => handleSectionClick('features')}
-              className={`text-[14px] font-medium transition-colors cursor-pointer ${
-                currentView === 'landing' ? 'text-slate-700 hover:text-[#3b28cc]' : 'text-slate-500 hover:text-slate-800'
-              }`}
+              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
               Features
             </button>
             <button 
+              id="nav-link-gst-billing" 
+              onClick={() => handleSectionClick('gst-billing')}
+              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+            >
+              GST Billing
+            </button>
+            <button 
               id="nav-link-pricing" 
               onClick={() => handleSectionClick('pricing')}
-              className={`text-[14px] font-medium transition-colors cursor-pointer ${
-                currentView === 'landing' ? 'text-slate-700 hover:text-[#3b28cc]' : 'text-slate-500 hover:text-slate-800'
-              }`}
+              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
               Pricing
             </button>
             <button 
-              id="nav-link-renew" 
-              onClick={() => onNavigate('renew')}
-              className={`text-[14px] font-medium transition-colors cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${
-                currentView === 'renew' 
-                  ? 'bg-purple-50 text-[#3b28cc] font-semibold' 
-                  : 'text-slate-700 hover:text-[#3b28cc]'
-              }`}
+              id="nav-link-download" 
+              onClick={() => handleSectionClick('download')}
+              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${currentView === 'renew' ? 'text-[#3b28cc]' : 'text-slate-400'}`} />
-              <span>Renew License</span>
+              Download
             </button>
             <button 
-              id="nav-link-reactivate" 
-              onClick={() => onNavigate('reactivate')}
-              className={`text-[14px] font-medium transition-colors cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg ${
-                currentView === 'reactivate' 
-                  ? 'bg-amber-50 text-amber-700 font-semibold' 
-                  : 'text-slate-700 hover:text-amber-600'
-              }`}
+              id="nav-link-licensing" 
+              onClick={() => handleSectionClick('licensing')}
+              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
-              <Zap className={`w-3.5 h-3.5 ${currentView === 'reactivate' ? 'text-amber-600' : 'text-slate-400'}`} />
-              <span>Reactivate</span>
+              License
             </button>
             <button 
-              id="nav-link-about" 
-              onClick={() => handleSectionClick('about')}
-              className={`text-[14px] font-medium transition-colors cursor-pointer ${
-                currentView === 'landing' ? 'text-slate-700 hover:text-[#3b28cc]' : 'text-slate-500 hover:text-slate-800'
-              }`}
+              id="nav-link-support" 
+              onClick={() => handleSectionClick('support')}
+              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
-              About us
-            </button>
-            <button 
-              id="nav-link-get-started" 
-              onClick={onGetStarted}
-              className="bg-[#3b28cc] hover:bg-[#3120b0] text-white px-5 py-2.5 text-[14px] font-semibold transition-all duration-300 rounded-[8px] shadow-sm inline-flex items-center justify-center cursor-pointer active:scale-95"
-            >
-              Get Started
+              Support
             </button>
           </nav>
+
+          {/* Right Side: Activate License Link + Download for Windows Button */}
+          <div className="hidden sm:flex items-center gap-5">
+            <button
+              id="nav-link-activate-license"
+              onClick={() => onNavigate('reactivate')}
+              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+            >
+              Activate License
+            </button>
+
+            <button 
+              id="nav-btn-download-windows" 
+              onClick={onGetStarted}
+              className="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-4 py-2 text-[14px] font-medium transition-colors rounded-[6px] border border-transparent inline-flex items-center gap-2 cursor-pointer active:scale-98"
+            >
+              <Download className="w-4 h-4" />
+              <span>Download for Windows</span>
+            </button>
+          </div>
 
           {/* Mobile menu toggle */}
           <div className="flex lg:hidden">
@@ -149,10 +159,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="mobile-menu-toggle-btn"
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-slate-900 p-2 hover:bg-slate-100 transition-colors rounded-lg cursor-pointer"
+              className="text-slate-800 p-2 hover:bg-slate-100 transition-colors rounded-[6px] cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
@@ -161,55 +171,64 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div id="mobile-menu-container" className="lg:hidden border-t border-slate-100 bg-white px-6 py-5 space-y-3 shadow-lg animate-in fade-in duration-200">
+        <div id="mobile-menu-container" className="lg:hidden border-t border-[#E5E7EB] bg-white px-5 py-4 space-y-3">
           <button 
             id="mobile-nav-link-features" 
             onClick={() => { setMobileMenuOpen(false); handleSectionClick('features'); }}
-            className="w-full text-left text-slate-800 hover:text-[#3b28cc] text-base font-medium py-1.5"
+            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
           >
             Features
           </button>
           <button 
+            id="mobile-nav-link-gst-billing" 
+            onClick={() => { setMobileMenuOpen(false); handleSectionClick('gst-billing'); }}
+            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
+          >
+            GST Billing
+          </button>
+          <button 
             id="mobile-nav-link-pricing" 
             onClick={() => { setMobileMenuOpen(false); handleSectionClick('pricing'); }}
-            className="w-full text-left text-slate-800 hover:text-[#3b28cc] text-base font-medium py-1.5"
+            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
           >
             Pricing
           </button>
           <button 
-            id="mobile-nav-link-renew" 
-            onClick={() => { setMobileMenuOpen(false); onNavigate('renew'); }}
-            className={`w-full text-left text-base font-medium py-2 px-3 rounded-lg flex items-center gap-2 ${
-              currentView === 'renew' ? 'bg-purple-50 text-[#3b28cc] font-semibold' : 'text-slate-800 hover:text-[#3b28cc]'
-            }`}
+            id="mobile-nav-link-download" 
+            onClick={() => { setMobileMenuOpen(false); handleSectionClick('download'); }}
+            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
           >
-            <RefreshCw className="w-4 h-4 text-[#3b28cc]" />
-            <span>Renew License (₹499/mo)</span>
+            Download
           </button>
           <button 
-            id="mobile-nav-link-reactivate" 
-            onClick={() => { setMobileMenuOpen(false); onNavigate('reactivate'); }}
-            className={`w-full text-left text-base font-medium py-2 px-3 rounded-lg flex items-center gap-2 ${
-              currentView === 'reactivate' ? 'bg-amber-50 text-amber-700 font-semibold' : 'text-slate-800 hover:text-amber-600'
-            }`}
+            id="mobile-nav-link-licensing" 
+            onClick={() => { setMobileMenuOpen(false); handleSectionClick('licensing'); }}
+            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
           >
-            <Zap className="w-4 h-4 text-amber-600" />
-            <span>Reactivate License</span>
+            License
           </button>
           <button 
-            id="mobile-nav-link-about" 
-            onClick={() => { setMobileMenuOpen(false); handleSectionClick('about'); }}
-            className="w-full text-left text-slate-800 hover:text-[#3b28cc] text-base font-medium py-1.5"
+            id="mobile-nav-link-support" 
+            onClick={() => { setMobileMenuOpen(false); handleSectionClick('support'); }}
+            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
           >
-            About us
+            Support
           </button>
-          <div className="pt-2">
+
+          <div className="pt-2 border-t border-[#E5E7EB] space-y-2">
             <button 
-              id="mobile-nav-link-get-started" 
-              onClick={() => { setMobileMenuOpen(false); onGetStarted(); }}
-              className="w-full text-center bg-[#3b28cc] hover:bg-[#3120b0] text-white px-5 py-3 text-base font-semibold rounded-[8px] shadow-sm block cursor-pointer"
+              id="mobile-nav-link-activate" 
+              onClick={() => { setMobileMenuOpen(false); onNavigate('reactivate'); }}
+              className="w-full text-left text-sm font-medium text-slate-700 py-1.5"
             >
-              Get Started
+              Activate License
+            </button>
+            <button 
+              id="mobile-nav-btn-download" 
+              onClick={() => { setMobileMenuOpen(false); onGetStarted(); }}
+              className="w-full text-center bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-4 py-2.5 text-sm font-medium rounded-[6px] block cursor-pointer"
+            >
+              Download for Windows
             </button>
           </div>
         </div>

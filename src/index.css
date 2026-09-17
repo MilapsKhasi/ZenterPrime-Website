@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Calibri", "Segoe UI", "Candara", "Plus Jakarta Sans", Arial, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --font-fredoka: "Fredoka", cursive, sans-serif;
 }
 
@@ -11,20 +11,25 @@ html {
 }
 
 html, body {
-  font-family: var(--font-sans), "Calibri", "Segoe UI", "Candara", "Plus Jakarta Sans", Arial, sans-serif;
-  background-color: #f8f8fc;
-  color: #000000;
-  overflow-x: hidden;
+  font-family: var(--font-sans), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #F9F9F9;
+  color: #111827;
+  overflow-x: clip;
 }
 
 .font-fredoka {
   font-family: var(--font-fredoka), "Fredoka", cursive, sans-serif;
 }
 
+/* Tabular numbers for accounting and monetary values */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Snappy transitions */
 .transition-snappy {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  transition-duration: 300ms;
+  transition-duration: 200ms;
 }
 

@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, Download, ShieldCheck, Copy, Check, ArrowRight, Laptop, Info, HelpCircle, AlertCircle, Sparkles, ExternalLink, Phone, Building2, User, Mail } from 'lucide-react';
-import { PlanDetails, PLANS, PlanType } from './PricingSection';
+import { 
+  X, 
+  CheckCircle2, 
+  Download, 
+  Copy, 
+  Check, 
+  ArrowRight, 
+  Laptop, 
+  HelpCircle, 
+  AlertCircle, 
+  ExternalLink, 
+  User 
+} from 'lucide-react';
+import { PlanDetails } from './PricingSection';
 
 export type ModalType = 
+  | 'get-started'
+  | 'plan-development'
   | 'checkout'
   | 'trial-booking'
   | 'demo' 
@@ -11,9 +25,13 @@ export type ModalType =
   | 'feature-inventory' 
   | 'feature-restore' 
   | 'license-success' 
+  | 'about'
+  | 'privacy'
+  | 'terms'
   | null;
 
-export const DOWNLOAD_EXE_URL = "https://github.com/MilapsKhasi/ZenterPrime-Website/releases/download/prerelease/ZenterPrime.Setup.7.3.0.exe";
+export const DOWNLOAD_EXE_URL = "https://github.com/MilapsKhasi/Makzon-Developers/releases/download/zenterprime-beta/ZenterPrime.Setup.7.3.0.exe";
+export const GITHUB_RELEASE_PAGE_URL = "https://github.com/MilapsKhasi/Makzon-Developers/releases/tag/zenterprime-beta";
 export const TRIAL_WEB_URL = "https://zenterprime.vercel.app";
 
 interface ModalsProps {
@@ -34,10 +52,10 @@ export const Modals: React.FC<ModalsProps> = ({
   activeModal, 
   onClose, 
   selectedPlan,
-  onPlanChange,
-  onPaymentSuccess,
   successData 
 }) => {
+  const [downloadTriggered, setDownloadTriggered] = useState(false);
+
   // Trial booking form states (for plan unavailable popup)
   const [trialName, setTrialName] = useState('');
   const [trialEmail, setTrialEmail] = useState('');
@@ -49,7 +67,6 @@ export const Modals: React.FC<ModalsProps> = ({
   // Demo form states
   const [demoName, setDemoName] = useState('');
   const [demoEmail, setDemoEmail] = useState('');
-  const [demoPlan, setDemoPlan] = useState('Professional Blue');
   const [demoNote, setDemoNote] = useState('');
   const [demoSubmitted, setDemoSubmitted] = useState(false);
 
@@ -59,14 +76,14 @@ export const Modals: React.FC<ModalsProps> = ({
   const [contactMessage, setContactMessage] = useState('');
   const [contactSubmitted, setContactSubmitted] = useState(false);
 
-  // Copy states
+  // Copy state
   const [copiedKey, setCopiedKey] = useState(false);
 
-  // Reset form states on modal change
   useEffect(() => {
-    if (activeModal === 'checkout' || activeModal === 'trial-booking') {
+    if (activeModal === 'checkout' || activeModal === 'trial-booking' || activeModal === 'plan-development' || activeModal === 'get-started') {
       setIsSubmittingTrial(false);
       setTrialSubmitted(false);
+      setDownloadTriggered(false);
     }
   }, [activeModal]);
 
@@ -76,6 +93,22 @@ export const Modals: React.FC<ModalsProps> = ({
     navigator.clipboard.writeText(key);
     setCopiedKey(true);
     setTimeout(() => setCopiedKey(false), 2000);
+  };
+
+  const handleDownloadExe = () => {
+    setDownloadTriggered(true);
+    try {
+      const link = document.createElement('a');
+      link.href = DOWNLOAD_EXE_URL;
+      link.setAttribute('download', 'ZenterPrime.Setup.7.3.0.exe');
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (e) {
+      window.open(DOWNLOAD_EXE_URL, '_blank');
+    }
   };
 
   const handleTrialBookingSubmit = (e: React.FormEvent) => {
@@ -96,354 +129,324 @@ export const Modals: React.FC<ModalsProps> = ({
       
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-slate-950/45 backdrop-blur-xs transition-opacity duration-200"
+        className="fixed inset-0 bg-slate-900/50 transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-lg bg-white rounded-2xl border border-slate-300 shadow-2xl p-6 sm:p-8 z-10 animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg bg-white rounded-[8px] border border-[#E5E7EB] p-6 z-10">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+          className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-[4px] hover:bg-slate-100 transition-colors cursor-pointer"
           aria-label="Close dialog"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
-        {/* 1. PLAN NOT AVAILABLE - TRIAL BOOKING POPUP MODAL */}
-        {(activeModal === 'checkout' || activeModal === 'trial-booking') && (
-          <div id="plan-unavailable-trial-modal">
-            {trialSubmitted ? (
-              /* Success State after booking trial */
-              <div className="text-center py-2">
-                <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-8 h-8" />
+        {/* 1. GET STARTED POPUP (TRIGGERED ONLY BY GENERAL 'GET STARTED' BUTTONS) */}
+        {activeModal === 'get-started' && (
+          <div id="get-started-popup-modal">
+            <div className="mb-5">
+              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+                Evaluation Options
+              </span>
+              <h3 
+                id="get-started-popup-title"
+                className="text-xl font-bold text-slate-900 tracking-tight"
+              >
+                Get Started with ZenterPrime 7.3
+              </h3>
+              <p className="text-xs text-slate-600 mt-1">
+                Choose how you want to evaluate ZenterPrime for your business:
+              </p>
+            </div>
+
+            {/* Options */}
+            <div className="space-y-3 mb-5">
+              
+              {/* Option 1: Download ZenterPrime 7.3 */}
+              <div className="bg-[#FCFDFE] border border-[#E5E7EB] rounded-[6px] p-4">
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-[4px] bg-[#6D28D9] text-white flex items-center justify-center shrink-0">
+                      <Download className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">
+                        Download ZenterPrime 7.3
+                      </h4>
+                      <p className="text-[11px] text-slate-500 font-mono">
+                        ZenterPrime.Setup.7.3.0.exe (45.2 MB)
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                    Windows Desktop
+                  </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-slate-950 mb-1">
-                  Trial Booking Confirmed!
-                </h3>
-                <p className="text-sm text-slate-600 mb-6 max-w-sm mx-auto">
-                  We have reserved your free 14-day trial for the <b className="text-[#3b28cc]">{selectedPlan.name}</b> tier. Confirmation has been scheduled for <b>{trialEmail}</b>.
+                <p className="text-xs text-slate-600 mb-3 leading-relaxed">
+                  Full offline desktop application for Windows. Includes GST billing, inventory, customer ledger, and direct thermal printing.
                 </p>
 
-                {/* Instant Launch Options */}
-                <div className="space-y-3 mb-6 text-left">
+                <button
+                  id="btn-download-zenterprime-73"
+                  onClick={handleDownloadExe}
+                  className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white font-semibold py-2.5 px-4 rounded-[6px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download ZenterPrime 7.3</span>
+                </button>
+              </div>
+
+              {/* Option 2: Start 14-days web trial */}
+              <div className="bg-[#FCFDFE] border border-[#E5E7EB] rounded-[6px] p-4">
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-[4px] bg-[#F3F4F6] text-[#6D28D9] flex items-center justify-center shrink-0">
+                      <Laptop className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">
+                        Start 14-days web trial
+                      </h4>
+                      <p className="text-[11px] text-slate-500">
+                        Browser version • No installation required
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-semibold text-purple-700 bg-purple-50 border border-purple-200 px-2 py-0.5 rounded">
+                    Web Preview
+                  </span>
+                </div>
+
+                <p className="text-xs text-slate-600 mb-3 leading-relaxed">
+                  Explore full invoicing, inventory tracking, and balance sheet analytics directly in your web browser.
+                </p>
+
+                <a
+                  id="btn-start-14-days-web-trial"
+                  href={TRIAL_WEB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold py-2.5 px-4 rounded-[6px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Start 14-days web trial</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
+                </a>
+              </div>
+
+            </div>
+
+            {/* Download Initiated Banner */}
+            {downloadTriggered && (
+              <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-[6px] text-xs text-emerald-900">
+                <div className="flex items-center gap-2 font-semibold">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Download started for ZenterPrime.Setup.7.3.0.exe</span>
+                </div>
+                <p className="text-[11px] text-emerald-700 mt-1">
+                  If the download didn&apos;t start automatically,{' '}
+                  <a 
+                    href={DOWNLOAD_EXE_URL} 
+                    download="ZenterPrime.Setup.7.3.0.exe" 
+                    className="font-semibold underline"
+                  >
+                    click here to direct download
+                  </a>.
+                </p>
+              </div>
+            )}
+
+            {/* Release Link */}
+            <div className="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[11px] text-slate-500">
+              <span>Release Tag: <code className="font-mono text-slate-700">zenterprime-beta</code></span>
+              <a
+                href={GITHUB_RELEASE_PAGE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#6D28D9] hover:underline font-medium inline-flex items-center gap-1"
+              >
+                <span>GitHub Releases</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* 2. PLANS GET STARTED POPUP (PLAN UNDER DEVELOPMENT - USE OR BOOK FREE TRIAL ON WEB) */}
+        {(activeModal === 'plan-development' || activeModal === 'checkout' || activeModal === 'trial-booking') && (
+          <div id="plan-development-modal">
+            {trialSubmitted ? (
+              <div className="text-center py-4">
+                <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+
+                <h3 className="text-lg font-bold text-slate-900 mb-1">
+                  Free Trial Registration Received
+                </h3>
+                <p className="text-xs text-slate-600 mb-5 leading-relaxed">
+                  We have registered your trial request for the <b>{selectedPlan.name}</b> tier. Confirmation has been scheduled for <b>{trialEmail}</b>.
+                </p>
+
+                <div className="space-y-2 text-left">
                   <a
                     href={TRIAL_WEB_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-[#3b28cc] hover:bg-[#3120b0] text-white py-3.5 px-4 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-xs cursor-pointer"
+                    className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white py-2.5 px-4 rounded-[6px] text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>Launch 14-Day Web Trial Now</span>
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
 
-                  <a
-                    href={DOWNLOAD_EXE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    download="ZenterPrime.Setup.7.3.0.exe"
-                    className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 py-3 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  <button
+                    onClick={() => { setTrialSubmitted(false); onClose(); }}
+                    className="w-full bg-[#F3F4F6] hover:bg-[#E5E7EB] text-slate-800 py-2 px-4 rounded-[6px] text-xs font-semibold cursor-pointer"
                   >
-                    <Download className="w-4 h-4 text-slate-600" />
-                    <span>Download Desktop Setup (v7.3.0 Windows)</span>
-                  </a>
+                    Close
+                  </button>
                 </div>
-
-                <button
-                  onClick={() => { setTrialSubmitted(false); onClose(); }}
-                  className="w-full py-2.5 text-xs text-slate-500 hover:text-slate-800 transition-colors font-medium cursor-pointer"
-                >
-                  Close
-                </button>
               </div>
             ) : (
-              /* Booking Form with Notice */
               <div>
-                {/* Plan Unavailable Alert Banner */}
-                <div className="mb-5 p-3.5 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-2.5 text-left">
-                  <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                <div className="mb-4 p-3.5 bg-amber-50 border border-amber-200 rounded-[6px] flex items-start gap-2.5 text-left">
+                  <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold text-amber-900 uppercase tracking-wide">
-                      Plan Not Available For This Time
+                    <h4 className="text-xs font-bold text-amber-950">
+                      Plan is Currently Under Development
                     </h4>
-                    <p className="text-xs text-amber-800 mt-0.5 leading-relaxed">
-                      Direct purchase for <b className="font-semibold">{selectedPlan.name}</b> ({selectedPlan.formattedPrice}) is temporarily closed. Please book a free 14-day full access trial below!
+                    <p className="text-xs text-amber-900 mt-1 leading-relaxed">
+                      The <b>{selectedPlan.name}</b> ({selectedPlan.formattedPrice}) license is being finalized for desktop release. In the meantime, use or book the free trial on the web.
                     </p>
                   </div>
                 </div>
 
-                {/* Modal Title */}
-                <div className="text-center mb-5">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-purple-50 border border-purple-200/80 rounded-full text-xs font-semibold text-[#3b28cc] mb-2">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>Book 14-Day Free Trial</span>
-                  </div>
-                  <h3 
-                    id="trial-booking-title"
-                    className="text-2xl font-bold text-slate-950 tracking-tight"
-                  >
-                    Get Started With Free Trial
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Full access to invoices, ledger, inventory &amp; reporting with zero commitment
-                  </p>
-                </div>
-
-                {/* Selected Edition Selector */}
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 mb-4">
+                {/* Option 1: Web Trial */}
+                <div className="bg-[#FCFDFE] border border-[#E5E7EB] rounded-[6px] p-3.5 mb-3 text-left">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[11px] font-bold text-slate-600 uppercase">Selected Plan Interest</span>
-                    <span className="text-xs font-bold text-[#3b28cc]">{selectedPlan.formattedPrice} {selectedPlan.period}</span>
+                    <span className="text-xs font-bold text-slate-900">
+                      Use 14-Days Free Trial on Web
+                    </span>
+                    <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                      Instant Access
+                    </span>
                   </div>
-                  <select
-                    id="trial-plan-select"
-                    value={selectedPlan.id}
-                    onChange={(e) => onPlanChange(PLANS[e.target.value as PlanType])}
-                    className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:border-[#3b28cc] cursor-pointer shadow-2xs"
+                  <p className="text-xs text-slate-600 mb-3 leading-relaxed">
+                    Test full invoices, customer ledgers, and reporting in your browser with zero installation.
+                  </p>
+                  <a
+                    id="btn-use-free-trial-on-web"
+                    href={TRIAL_WEB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white font-semibold py-2 px-4 rounded-[6px] text-xs flex items-center justify-center gap-1.5 cursor-pointer"
                   >
-                    <option value="monthly">Standard Monthly — ₹499 / month</option>
-                    <option value="silver">Standard Silver — ₹14,999 (Lifetime)</option>
-                    <option value="blue">Professional Blue — ₹18,999 (Lifetime) ★ RECOMMENDED</option>
-                  </select>
+                    <span>Use Free Trial on Web Now</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
 
-                {/* Trial Booking Form */}
-                <form onSubmit={handleTrialBookingSubmit} className="space-y-3">
-                  
-                  {/* Name field */}
-                  <div className="relative">
-                    <fieldset className="border border-slate-300 focus-within:border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-1.5 transition-colors">
-                      <legend className="text-[11px] font-medium text-slate-600 px-1 select-none flex items-center gap-1">
-                        <User className="w-3 h-3 text-[#3b28cc]" />
-                        <span>Your Name *</span>
-                      </legend>
+                {/* Option 2: Book Form */}
+                <div className="bg-white border border-[#E5E7EB] rounded-[6px] p-3.5 text-left">
+                  <span className="text-xs font-bold text-slate-900 block mb-1">
+                    Book Free Trial / Contact Callback
+                  </span>
+                  <p className="text-xs text-slate-500 mb-3">
+                    Reserve an assisted onboarding slot for your store:
+                  </p>
+
+                  <form onSubmit={handleTrialBookingSubmit} className="space-y-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <input
-                        id="trial-booking-name"
+                        id="plan-trial-name"
                         type="text"
                         required
                         value={trialName}
                         onChange={(e) => setTrialName(e.target.value)}
-                        placeholder="e.g. Rahul Sharma"
-                        className="w-full bg-transparent border-none text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
+                        placeholder="Your Name *"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
-                    </fieldset>
-                  </div>
-
-                  {/* Email field */}
-                  <div className="relative">
-                    <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-1.5 transition-colors">
-                      <legend className="text-[11px] font-medium text-[#3b28cc] px-1 select-none flex items-center gap-1">
-                        <Mail className="w-3 h-3 text-[#3b28cc]" />
-                        <span>Email Address *</span>
-                      </legend>
                       <input
-                        id="trial-booking-email"
+                        id="plan-trial-email"
                         type="email"
                         required
                         value={trialEmail}
                         onChange={(e) => setTrialEmail(e.target.value)}
-                        placeholder="rahul@business.com"
-                        className="w-full bg-transparent border-none text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
+                        placeholder="Email Address *"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
-                    </fieldset>
-                  </div>
+                    </div>
 
-                  {/* Phone & Company grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <fieldset className="border border-slate-300 focus-within:border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-1.5 transition-colors">
-                      <legend className="text-[11px] font-medium text-slate-600 px-1 select-none flex items-center gap-1">
-                        <Phone className="w-3 h-3 text-slate-400" />
-                        <span>Phone / WhatsApp</span>
-                      </legend>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <input
-                        id="trial-booking-phone"
+                        id="plan-trial-phone"
                         type="tel"
                         value={trialPhone}
                         onChange={(e) => setTrialPhone(e.target.value)}
-                        placeholder="+91 98765 43210"
-                        className="w-full bg-transparent border-none text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
+                        placeholder="Phone / WhatsApp"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
-                    </fieldset>
-
-                    <fieldset className="border border-slate-300 focus-within:border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-1.5 transition-colors">
-                      <legend className="text-[11px] font-medium text-slate-600 px-1 select-none flex items-center gap-1">
-                        <Building2 className="w-3 h-3 text-slate-400" />
-                        <span>Business Name</span>
-                      </legend>
                       <input
-                        id="trial-booking-business"
+                        id="plan-trial-business"
                         type="text"
                         value={trialBusiness}
                         onChange={(e) => setTrialBusiness(e.target.value)}
-                        placeholder="Store or Company"
-                        className="w-full bg-transparent border-none text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
+                        placeholder="Business Name"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
-                    </fieldset>
-                  </div>
+                    </div>
 
-                  {/* Submit CTA */}
-                  <div className="pt-2">
                     <button
-                      id="trial-booking-submit-btn"
+                      id="btn-submit-plan-trial"
                       type="submit"
                       disabled={isSubmittingTrial}
-                      className="w-full bg-[#3b28cc] hover:bg-[#3120b0] text-white font-semibold py-3 px-6 rounded-lg transition-snappy shadow-xs flex items-center justify-center gap-2 cursor-pointer active:scale-98 disabled:opacity-75"
+                      className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2 px-4 rounded-[6px] text-xs flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-75"
                     >
                       {isSubmittingTrial ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span className="text-xs">Reserving 14-Day Trial...</span>
-                        </>
+                        <span>Registering Request...</span>
                       ) : (
                         <>
-                          <span className="text-sm">Book Free 14-Day Trial</span>
-                          <ArrowRight className="w-4 h-4" />
+                          <span>Book Free Trial Callback</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
                         </>
                       )}
                     </button>
-                  </div>
-
-                  {/* Instant Trial Direct Link */}
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                    <span>Want to start immediately?</span>
-                    <a
-                      href={TRIAL_WEB_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#3b28cc] hover:underline font-semibold inline-flex items-center gap-1"
-                    >
-                      <span>Launch Instant Web Trial</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
-
-                </form>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* 2. REQUEST A DEMO MODAL */}
-        {activeModal === 'demo' && (
-          <div>
-            <h3 className="text-2xl font-bold text-[#3b28cc] text-center mb-6">
-              Request a demo
-            </h3>
-
-            {demoSubmitted ? (
-              <div className="text-center py-6">
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
-                <h4 className="text-lg font-bold text-slate-900 mb-1">Demo Request Received!</h4>
-                <p className="text-sm text-slate-600 mb-6">
-                  Our product specialist will reach out to <b>{demoEmail}</b> within 24 hours with your interactive walkthrough session.
-                </p>
-                <button
-                  onClick={() => { setDemoSubmitted(false); onClose(); }}
-                  className="bg-[#3b28cc] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#3120b0] cursor-pointer"
-                >
-                  Done
-                </button>
-              </div>
-            ) : (
-              <form 
-                onSubmit={(e) => { e.preventDefault(); setDemoSubmitted(true); }}
-                className="space-y-4"
-              >
-                {/* Your name */}
-                <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-2">
-                  <legend className="text-xs font-medium text-[#3b28cc] px-1.5">
-                    Your name
-                  </legend>
-                  <input
-                    type="text"
-                    required
-                    value={demoName}
-                    onChange={(e) => setDemoName(e.target.value)}
-                    placeholder="Jane Doe"
-                    className="w-full bg-transparent border-none text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
-                  />
-                </fieldset>
-
-                {/* Your email */}
-                <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-2">
-                  <legend className="text-xs font-medium text-[#3b28cc] px-1.5">
-                    Your email
-                  </legend>
-                  <input
-                    type="email"
-                    required
-                    value={demoEmail}
-                    onChange={(e) => setDemoEmail(e.target.value)}
-                    placeholder="jane@company.com"
-                    className="w-full bg-transparent border-none text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
-                  />
-                </fieldset>
-
-                {/* Select plan */}
-                <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-2">
-                  <legend className="text-xs font-medium text-[#3b28cc] px-1.5">
-                    Select plan of interest
-                  </legend>
-                  <select
-                    value={demoPlan}
-                    onChange={(e) => setDemoPlan(e.target.value)}
-                    className="w-full bg-transparent border-none text-sm text-slate-900 focus:outline-none px-1 py-0.5 cursor-pointer"
-                  >
-                    <option value="Professional Blue">Professional Blue (₹18,999 Lifetime)</option>
-                    <option value="Standard Silver">Standard Silver (₹14,999 Lifetime)</option>
-                    <option value="Standard Monthly">Standard Monthly (₹499 / mo)</option>
-                  </select>
-                </fieldset>
-
-                {/* Preferred time / note */}
-                <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-2">
-                  <legend className="text-xs font-medium text-[#3b28cc] px-1.5">
-                    Preferred date & time / Note
-                  </legend>
-                  <textarea
-                    rows={2}
-                    value={demoNote}
-                    onChange={(e) => setDemoNote(e.target.value)}
-                    placeholder="e.g. Weekdays 2 PM IST"
-                    className="w-full bg-transparent border-none text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5 resize-none"
-                  />
-                </fieldset>
-
-                {/* Send request */}
-                <div className="pt-3">
-                  <button
-                    type="submit"
-                    className="w-full bg-[#3b28cc] hover:bg-[#3120b0] text-white font-semibold py-3 px-6 rounded-lg transition-snappy shadow-xs cursor-pointer active:scale-98"
-                  >
-                    Send request
-                  </button>
+                  </form>
                 </div>
-              </form>
+              </div>
             )}
           </div>
         )}
 
-        {/* 3. CONTACT US MODAL */}
+        {/* 3. CONTACT DESK MODAL */}
         {activeModal === 'contact' && (
           <div>
-            <h3 className="text-2xl font-bold text-[#3b28cc] text-center mb-6">
-              Contact us
-            </h3>
+            <div className="mb-5">
+              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+                Help &amp; Inquiries
+              </span>
+              <h3 className="text-xl font-bold text-slate-900">
+                Contact ZenterPrime Support
+              </h3>
+              <p className="text-xs text-slate-600 mt-1">
+                Reach our technical and sales desk for retail software inquiries.
+              </p>
+            </div>
 
             {contactSubmitted ? (
-              <div className="text-center py-6">
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
-                <h4 className="text-lg font-bold text-slate-900 mb-1">Message Sent!</h4>
-                <p className="text-sm text-slate-600 mb-6">
-                  Thank you for getting in touch. The ZenterPrime support team will reply to <b>{contactEmail}</b> shortly.
+              <div className="text-center py-4">
+                <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto mb-2" />
+                <h4 className="text-sm font-bold text-slate-900">Message Submitted</h4>
+                <p className="text-xs text-slate-600 mb-4 mt-1">
+                  We have logged your query and our desk will respond to <b>{contactEmail}</b> shortly.
                 </p>
                 <button
                   onClick={() => { setContactSubmitted(false); onClose(); }}
-                  className="bg-[#3b28cc] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#3120b0] cursor-pointer"
+                  className="bg-[#6D28D9] text-white px-4 py-2 rounded-[6px] text-xs font-semibold"
                 >
                   Done
                 </button>
@@ -451,180 +454,127 @@ export const Modals: React.FC<ModalsProps> = ({
             ) : (
               <form 
                 onSubmit={(e) => { e.preventDefault(); setContactSubmitted(true); }}
-                className="space-y-4"
+                className="space-y-3 text-xs"
               >
-                {/* Your name */}
-                <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-2">
-                  <legend className="text-xs font-medium text-[#3b28cc] px-1.5">
-                    Your name
-                  </legend>
+                <div>
+                  <label className="block text-slate-700 font-medium mb-1">Your Name</label>
                   <input
                     type="text"
                     required
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    placeholder="Jane Doe"
-                    className="w-full bg-transparent border-none text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
+                    placeholder="e.g. Ramesh Patel"
+                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#6D28D9]"
                   />
-                </fieldset>
+                </div>
 
-                {/* Your email */}
-                <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-2">
-                  <legend className="text-xs font-medium text-[#3b28cc] px-1.5">
-                    Your email
-                  </legend>
+                <div>
+                  <label className="block text-slate-700 font-medium mb-1">Email Address</label>
                   <input
                     type="email"
                     required
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
-                    placeholder="jane@company.com"
-                    className="w-full bg-transparent border-none text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5"
+                    placeholder="ramesh@retailstore.com"
+                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#6D28D9]"
                   />
-                </fieldset>
+                </div>
 
-                {/* Message */}
-                <fieldset className="border border-[#3b28cc] rounded-lg px-3 pt-0.5 pb-2">
-                  <legend className="text-xs font-medium text-[#3b28cc] px-1.5">
-                    Message
-                  </legend>
+                <div>
+                  <label className="block text-slate-700 font-medium mb-1">Inquiry / Note</label>
                   <textarea
-                    rows={4}
+                    rows={3}
                     required
                     value={contactMessage}
                     onChange={(e) => setContactMessage(e.target.value)}
-                    placeholder="How can our team help your business?"
-                    className="w-full bg-transparent border-none text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none px-1 py-0.5 resize-none"
+                    placeholder="How can we assist your business?"
+                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#6D28D9] resize-none"
                   />
-                </fieldset>
-
-                {/* Send request */}
-                <div className="pt-3">
-                  <button
-                    type="submit"
-                    className="w-full bg-[#3b28cc] hover:bg-[#3120b0] text-white font-semibold py-3 px-6 rounded-lg transition-snappy shadow-xs cursor-pointer active:scale-98"
-                  >
-                    Send request
-                  </button>
                 </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white font-semibold py-2.5 px-4 rounded-[6px] transition-colors cursor-pointer"
+                >
+                  Send Inquiry
+                </button>
               </form>
             )}
           </div>
         )}
 
-        {/* 4. FEATURE DETAILS: EXECUTIVE SUMMARY */}
-        {activeModal === 'feature-summary' && (
+        {/* 4. ABOUT MODAL */}
+        {activeModal === 'about' && (
           <div>
-            <div className="w-12 h-12 rounded-xl bg-[#3b28cc] flex items-center justify-center text-white mb-4">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M4 19h16v2H4v-2z" />
-                <rect x="5" y="11" width="2.5" height="6" rx="0.5" />
-                <rect x="9.5" y="7" width="2.5" height="10" rx="0.5" />
-                <rect x="14" y="4" width="2.5" height="13" rx="0.5" />
-                <rect x="18.5" y="9" width="2.5" height="8" rx="0.5" />
-              </svg>
+            <div className="mb-4">
+              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+                Company Profile
+              </span>
+              <h3 className="text-xl font-bold text-slate-900">
+                About ZenterPrime Solutions
+              </h3>
             </div>
-            <h3 className="text-2xl font-bold text-slate-950 mb-2">
-              Executive Summary & Business Intelligence
-            </h3>
-            <p className="text-slate-600 text-sm leading-relaxed mb-4">
-              Get an instant snapshot of your entire financial health without digging through complex ledgers.
+            <p className="text-xs text-slate-600 leading-relaxed mb-3">
+              ZenterPrime is a dedicated retail business accounting software engineered for Indian shop owners, wholesalers, and billing counters. Built with an offline-first philosophy, ZenterPrime ensures that grocery stores, hardware merchants, pharmacy counters, and textile shops maintain uninterrupted billing regardless of internet availability.
             </p>
-            <div className="space-y-2.5 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl mb-6">
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>Real-time Financials:</b> Track gross sales, purchases, net receivable & net payable in one glance.</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>Customer & Vendor Directory:</b> Quick summary of active parties with balance aging metrics.</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>Instant Excel Export:</b> 1-click export to CA-ready Excel format and GST filing templates.</span>
-              </div>
-            </div>
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+              Our software strictly complies with CBIC GST mandates, offering automatic tax splitting, standard HSN/SAC management, and one-click data backups.
+            </p>
             <button
               onClick={onClose}
-              className="w-full bg-[#3b28cc] text-white py-2.5 rounded-lg text-sm font-medium hover:bg-[#3120b0] cursor-pointer"
+              className="w-full bg-[#F3F4F6] hover:bg-[#E5E7EB] text-slate-800 text-xs font-semibold py-2 rounded-[6px]"
             >
               Close
             </button>
           </div>
         )}
 
-        {/* 5. FEATURE DETAILS: INVENTORY TRACKING */}
-        {activeModal === 'feature-inventory' && (
+        {/* 5. PRIVACY MODAL */}
+        {activeModal === 'privacy' && (
           <div>
-            <div className="w-12 h-12 rounded-xl bg-[#3b28cc] flex items-center justify-center text-white mb-4">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="8" cy="21" r="1.5" fill="currentColor" />
-                <circle cx="19" cy="21" r="1.5" fill="currentColor" />
-                <path d="M2.5 2.5h3l2.68 12.39a1.5 1.5 0 0 0 1.47 1.11h9.7a1.5 1.5 0 0 0 1.47-1.15l1.68-7.35H6.2" />
-              </svg>
+            <div className="mb-4">
+              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+                Security &amp; Data
+              </span>
+              <h3 className="text-xl font-bold text-slate-900">
+                Privacy &amp; Data Ownership
+              </h3>
             </div>
-            <h3 className="text-2xl font-bold text-slate-950 mb-2">
-              Smart Inventory Tracking
-            </h3>
-            <p className="text-slate-600 text-sm leading-relaxed mb-4">
-              Whether purchased, sold, or returned, your warehouse and retail stock stay completely synchronized.
+            <p className="text-xs text-slate-600 leading-relaxed mb-3">
+              Because ZenterPrime is a native Windows desktop application, your financial books, customer lists, profit margins, and sales vouchers reside strictly on your local PC storage. We do not upload your business ledgers to third-party ad networks or external analytics servers.
             </p>
-            <div className="space-y-2.5 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl mb-6">
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>SKU & Barcode Support:</b> Scan barcodes during sales billing for ultra-fast checkout.</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>Low Stock Notifications:</b> Automated alerts before you run out of fast-selling items.</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>Batch & Expiry Dates:</b> Full batch-wise tracking for FMCG and pharmaceutical retailers.</span>
-              </div>
-            </div>
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+              License keys are validated securely during activation. Backup files created by the software are encrypted and stay under your exclusive physical control.
+            </p>
             <button
               onClick={onClose}
-              className="w-full bg-[#3b28cc] text-white py-2.5 rounded-lg text-sm font-medium hover:bg-[#3120b0] cursor-pointer"
+              className="w-full bg-[#F3F4F6] hover:bg-[#E5E7EB] text-slate-800 text-xs font-semibold py-2 rounded-[6px]"
             >
               Close
             </button>
           </div>
         )}
 
-        {/* 6. FEATURE DETAILS: RESTORE DELETIONS */}
-        {activeModal === 'feature-restore' && (
+        {/* 6. TERMS MODAL */}
+        {activeModal === 'terms' && (
           <div>
-            <div className="w-12 h-12 rounded-xl bg-[#3b28cc] flex items-center justify-center text-white mb-4">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 6h18" />
-                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-              </svg>
+            <div className="mb-4">
+              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+                License Terms
+              </span>
+              <h3 className="text-xl font-bold text-slate-900">
+                Terms of Service &amp; License
+              </h3>
             </div>
-            <h3 className="text-2xl font-bold text-slate-950 mb-2">
-              Fail-Safe Restore Deletions
-            </h3>
-            <p className="text-slate-600 text-sm leading-relaxed mb-4">
-              Mistakes happen during busy shop hours. With ZenterPrime’s internal Recycle Bin, no invoice or party record is ever lost forever.
+            <p className="text-xs text-slate-600 leading-relaxed mb-3">
+              ZenterPrime lifetime licenses grant perpetual usage rights on authorized Windows computers. Software updates for statutory GST changes are included as outlined per plan terms.
             </p>
-            <div className="space-y-2.5 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl mb-6">
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>Zero Data Loss:</b> Inadvertently deleted vouchers remain safely in the Recycle Bin.</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>1-Click Restoration:</b> Head to Settings &gt; Recycle Bin &gt; click &quot;Restore&quot; to revive records with original ledger history.</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#3b28cc] shrink-0 mt-0.5" />
-                <span><b>Audit Trail:</b> Full record of who deleted and who restored each entry.</span>
-              </div>
-            </div>
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+              Users are encouraged to maintain daily backups on external USB drives to guard against hardware crashes.
+            </p>
             <button
               onClick={onClose}
-              className="w-full bg-[#3b28cc] text-white py-2.5 rounded-lg text-sm font-medium hover:bg-[#3120b0] cursor-pointer"
+              className="w-full bg-[#F3F4F6] hover:bg-[#E5E7EB] text-slate-800 text-xs font-semibold py-2 rounded-[6px]"
             >
               Close
             </button>
@@ -634,90 +584,48 @@ export const Modals: React.FC<ModalsProps> = ({
         {/* 7. LICENSE PURCHASE SUCCESS MODAL */}
         {activeModal === 'license-success' && successData && (
           <div className="text-center">
-            <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle2 className="w-8 h-8" />
+            <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
+              <CheckCircle2 className="w-6 h-6" />
             </div>
 
-            <h3 className="text-2xl font-bold text-slate-950 mb-1">
-              Payment Successful!
+            <h3 className="text-xl font-bold text-slate-900 mb-1">
+              Payment Successful
             </h3>
-            <p className="text-xs text-slate-500 mb-5">
-              Receipt &amp; license details sent to <b>{successData.email}</b>
+            <p className="text-xs text-slate-500 mb-4">
+              Receipt &amp; commercial key assigned to <b>{successData.email}</b>
             </p>
 
-            {/* Automatic download notice */}
-            <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-3.5 py-2.5 rounded-lg mb-5 flex items-center justify-center gap-2">
-              <Download className="w-4 h-4 text-emerald-600 animate-bounce" />
-              <span><b>ZenterPrime.Setup.7.3.0.exe</b> download started automatically!</span>
-            </div>
-
-            {/* License Key Box */}
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-5 text-left">
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-[11px] font-bold text-slate-500 uppercase">Your License Key ({successData.plan.name})</span>
-                <span className="text-[10px] text-emerald-600 font-semibold bg-emerald-100 px-2 py-0.5 rounded">Active (YES)</span>
+            <div className="bg-[#FCFDFE] border border-[#E5E7EB] rounded-[6px] p-3.5 mb-4 text-left">
+              <div className="flex items-center justify-between mb-1 text-[11px] font-semibold text-slate-500 uppercase">
+                <span>License Key ({successData.plan.name})</span>
+                <span className="text-emerald-700">Active</span>
               </div>
-              <div className="flex items-center justify-between bg-white border border-slate-300 rounded-lg p-2.5">
-                <span className="font-mono text-sm sm:text-base font-bold text-[#3b28cc] tracking-wide break-all">
+              <div className="flex items-center justify-between bg-white border border-[#E5E7EB] rounded-[4px] p-2">
+                <span className="font-mono text-xs sm:text-sm font-bold text-[#6D28D9]">
                   {successData.licenseKey}
                 </span>
                 <button
                   onClick={() => handleCopyLicense(successData.licenseKey)}
-                  className="ml-2 p-1.5 text-slate-500 hover:text-[#3b28cc] rounded hover:bg-purple-50 transition-colors shrink-0 cursor-pointer"
-                  title="Copy License Key"
+                  className="p-1 text-slate-500 hover:text-[#6D28D9] rounded"
+                  title="Copy Key"
                 >
                   {copiedKey ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
-              <div className="flex items-center justify-between text-[11px] text-slate-500 mt-2.5 pt-2 border-t border-slate-200">
-                <span>Database Sync: <b className="text-emerald-700 font-medium">Supabase (is_active: YES)</b></span>
-                <span>Expiry: <b className="text-slate-800 font-semibold">{successData.expiry || 'LIFETIME'}</b></span>
-              </div>
             </div>
 
-            {/* How to activate instruction & Machine ID guide */}
-            <div className="space-y-2.5 mb-6 text-left">
-              <div className="bg-purple-50/80 border border-purple-100 rounded-xl p-3.5 text-xs text-slate-700">
-                <div className="flex items-center gap-1.5 font-bold text-[#3b28cc] mb-1.5">
-                  <Laptop className="w-4 h-4" />
-                  <span>How to activate on your PC:</span>
-                </div>
-                <ol className="list-decimal list-inside space-y-1 text-slate-600 text-[11px] leading-relaxed">
-                  <li>Install and launch <b>ZenterPrime 7.3 Desktop</b> on your Windows PC.</li>
-                  <li>Go to <b>Settings</b> &gt; <b>Your PC</b>.</li>
-                  <li>Paste your License Key into the box &amp; click <b>Activate</b> to unlock instantly.</li>
-                </ol>
-              </div>
-
-              {/* Machine ID lookup guide */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs text-slate-700">
-                <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
-                  <HelpCircle className="w-3.5 h-3.5 text-[#3b28cc]" />
-                  <span>How to check your Device &apos;Machine ID&apos;:</span>
-                </div>
-                <p className="text-[11px] text-slate-600 leading-relaxed">
-                  Open <b>ZenterPrime Desktop</b> &gt; navigate to <b>Settings</b> &gt; open the <b>&apos;About&apos;</b> tab &gt; look for the <b>&apos;Machine ID&apos;</b> shown directly below the license tag.
-                </p>
-                <div className="mt-1.5 text-[10px] text-slate-500 bg-white border border-slate-200 rounded-md px-2.5 py-1.5">
-                  <span className="font-medium text-slate-700">💡 Tip:</span> Save your Machine ID — it can be used for reactivating or renewing existing licenses, as well as purchasing/assigning new licenses to an existing machine.
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-2">
               <a
                 href={DOWNLOAD_EXE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 download="ZenterPrime.Setup.7.3.0.exe"
-                className="flex-1 bg-[#3b28cc] hover:bg-[#3120b0] text-white py-3 px-4 rounded-lg text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="flex-1 bg-[#6D28D9] hover:bg-[#5B21B6] text-white py-2.5 px-3 rounded-[6px] text-xs font-semibold inline-flex items-center justify-center gap-1.5"
               >
-                <Download className="w-4 h-4" />
-                <span>Download ZenterPrime.Setup.7.3.0.exe</span>
+                <Download className="w-3.5 h-3.5" />
+                <span>Download Setup.exe</span>
               </a>
               <button
                 onClick={onClose}
-                className="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 py-3 px-6 rounded-lg text-sm font-medium cursor-pointer"
+                className="bg-white border border-slate-300 text-slate-700 py-2 px-4 rounded-[6px] text-xs font-medium cursor-pointer"
               >
                 Done
               </button>
@@ -729,4 +637,5 @@ export const Modals: React.FC<ModalsProps> = ({
     </div>
   );
 };
+
 export default Modals;

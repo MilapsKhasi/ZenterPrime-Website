@@ -19,7 +19,7 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
 
   return (
     <footer className="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 pb-12 border-b border-slate-900">
           
@@ -34,7 +34,7 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
               </span>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed max-w-sm font-sans">
-              ZenterPrime is a modern accounting, billing, and inventory workstation built for Indian small businesses. Manage sales books and generate government-compliant GSTR-3B filings natively.
+              ZenterPrime is a modern accounting, billing, and inventory workstation built for Indian businesses. Manage sales books and generate government-compliant GSTR filings locally.
             </p>
             {/* Social Channels */}
             <div className="flex items-center space-x-4 pt-2">
@@ -79,7 +79,7 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
                   <a href="#gallery" className="hover:text-violet-400 transition-colors">Gallery Screenshots</a>
                 </li>
                 <li>
-                  <button onClick={onDownloadClick} className="hover:text-violet-400 transition-colors text-left cursor-pointer">Download Beta</button>
+                  <button onClick={onDownloadClick} className="hover:text-violet-400 transition-colors text-left cursor-pointer">Download for Windows</button>
                 </li>
               </ul>
             </div>
@@ -88,16 +88,16 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
               <h4 className="text-xs font-bold text-slate-200 tracking-widest uppercase font-mono">LEGAL & DOCS</h4>
               <ul className="space-y-2 text-xs">
                 <li>
-                  <a href="#privacy" onClick={(e) => { e.preventDefault(); alert('Privacy Statement: ZenterPrime protects your records with industry-standard encryption. Your database is fully synchronized in the cloud securely.'); }} className="hover:text-violet-400 transition-colors">Privacy Policy</a>
+                  <a href="#privacy" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Privacy Statement</a>
                 </li>
                 <li>
-                  <a href="#terms" onClick={(e) => { e.preventDefault(); alert('Terms of Service: This beta release is for evaluation and active community feedback. Services are provided with cloud protection and secure encryption.'); }} className="hover:text-violet-400 transition-colors">Terms & Conditions</a>
+                  <a href="#terms" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Terms of License</a>
                 </li>
                 <li>
-                  <a href="#docs" onClick={(e) => { e.preventDefault(); alert('Documentation is packaged natively. Access the guide anytime inside the application.'); }} className="hover:text-violet-400 transition-colors">Documentation</a>
+                  <a href="#docs" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Documentation</a>
                 </li>
                 <li>
-                  <button onClick={onFeedbackClick} className="hover:text-violet-400 transition-colors text-left cursor-pointer">Send Beta Feedback</button>
+                  <button onClick={onFeedbackClick} className="hover:text-violet-400 transition-colors text-left cursor-pointer">Send Feedback</button>
                 </li>
               </ul>
             </div>

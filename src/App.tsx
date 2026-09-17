@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, AppView } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { FeaturesSection } from './components/FeaturesSection';
+import { TrustSection } from './components/TrustSection';
+import { WhyBusinessesChoose } from './components/WhyBusinessesChoose';
+import { GstFeatures } from './components/GstFeatures';
+import { ScreenshotsGallery } from './components/ScreenshotsGallery';
+import { DesktopAdvantages } from './components/DesktopAdvantages';
+import { BackupRestore } from './components/BackupRestore';
 import { PricingSection, PlanDetails, PLANS } from './components/PricingSection';
-import { AboutSection } from './components/AboutSection';
+import { LicenseSection } from './components/LicenseSection';
+import { DownloadSection } from './components/Download';
+import { FAQSection } from './components/FAQSection';
+import { EnterpriseFooter } from './components/EnterpriseFooter';
 import { RenewLicense } from './components/RenewLicense';
 import { ReactivateLicense } from './components/ReactivateLicense';
-import { Modals, ModalType, DOWNLOAD_EXE_URL, TRIAL_WEB_URL } from './components/Modals';
+import { Modals, ModalType, DOWNLOAD_EXE_URL } from './components/Modals';
 import { createSupabaseLicense } from './lib/supabase';
 
 export function App() {
   const [currentView, setCurrentView] = useState<AppView>('landing');
   const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [selectedPlan, setSelectedPlan] = useState<PlanDetails>(PLANS.blue);
+  const [selectedPlan, setSelectedPlan] = useState<PlanDetails>(PLANS.standard);
   const [successData, setSuccessData] = useState<{
     email: string;
     plan: PlanDetails;
@@ -56,7 +64,7 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Smooth scroll handler
+  // Smooth scroll handler for anchor links
   const handleScrollTo = (sectionId: string) => {
     if (currentView !== 'landing') {
       setCurrentView('landing');
@@ -71,21 +79,21 @@ export function App() {
     }
   };
 
-  // Plan selection from Pricing section -> opens Checkout Popup Modal
+  // Plan selection from Pricing section -> opens Plan Under Development Popup
   const handleSelectPlan = (plan: PlanDetails) => {
     setSelectedPlan(plan);
-    setActiveModal('checkout');
+    setActiveModal('plan-development');
   };
 
   // Payment success handler -> inserts into Supabase 'licenses' table & downloads installer
   const handlePaymentSuccess = async (email: string, plan: PlanDetails) => {
-    const isMonthly = plan.id === 'monthly';
+    const isMonthly = false; // All current plans focus on lifetime
     
     // Insert into Supabase table 'licenses'
     const result = await createSupabaseLicense(email, plan.name, isMonthly);
 
     const licenseKey = result.data?.license_id || `ZP-730-KEY-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
-    const expiry = result.data?.expiry || (isMonthly ? 'End of Current Month' : 'LIFETIME');
+    const expiry = result.data?.expiry || 'LIFETIME';
 
     setSuccessData({
       email,
@@ -112,21 +120,14 @@ export function App() {
   };
 
   return (
-    <div id="page-wrapper" className="min-h-screen bg-[#f8f8fc] flex flex-col text-slate-900 selection:bg-[#3b28cc]/20 selection:text-[#3b28cc]">
+    <div id="page-wrapper" className="min-h-screen bg-[#F9F9F9] flex flex-col text-slate-900 font-sans selection:bg-[#6D28D9]/15 selection:text-[#6D28D9]">
       
-      {/* 1. Sticky Navbar */}
+      {/* 1. Sticky Enterprise Navbar */}
       <Navbar 
         currentView={currentView}
         onNavigate={navigateTo}
         onScrollTo={handleScrollTo}
-        onGetStarted={() => {
-          if (currentView !== 'landing') {
-            navigateTo('landing');
-            setTimeout(() => handleScrollTo('pricing'), 100);
-          } else {
-            handleScrollTo('pricing');
-          }
-        }}
+        onGetStarted={() => setActiveModal('get-started')}
       />
 
       {/* Main Dynamic View System */}
@@ -158,96 +159,59 @@ export function App() {
         {/* LANDING PAGE VIEW */}
         {currentView === 'landing' && (
           <>
-            {/* 2. Hero Section */}
+            {/* 1. Hero Section */}
             <Hero 
-              onGetStarted={() => handleScrollTo('pricing')}
+              onGetStarted={() => setActiveModal('get-started')}
             />
 
-            {/* 3. Features Section */}
-            <FeaturesSection 
-              onSelectFeature={(featureKey) => {
-                if (featureKey === 'summary') setActiveModal('feature-summary');
-                if (featureKey === 'inventory') setActiveModal('feature-inventory');
-                if (featureKey === 'restore') setActiveModal('feature-restore');
-              }}
+            {/* 2. Trust Section (4 Core Pillars) */}
+            <TrustSection />
+
+            {/* 3. Why Businesses Choose (Two-column: 8 Features + Screenshot) */}
+            <WhyBusinessesChoose 
+              onSelectPlan={() => handleScrollTo('pricing')}
             />
 
-            {/* 4. Pricing Section (Clicking Get Started triggers the Checkout Modal) */}
+            {/* 4. GST Features (Timeline & Statutory Pillars) */}
+            <GstFeatures />
+
+            {/* 5. Screenshots Gallery (Tabbed Windows Views) */}
+            <ScreenshotsGallery />
+
+            {/* 6. Desktop Advantages (Offline First, Fast Performance, Data Ownership) */}
+            <DesktopAdvantages />
+
+            {/* 7. Backup & Restore (Data Security & Recovery) */}
+            <BackupRestore />
+
+            {/* 8. Pricing Section (Lifetime Focus) */}
             <PricingSection 
               onSelectPlan={handleSelectPlan}
             />
 
-            {/* 5. About Section */}
-            <AboutSection 
-              onRequestDemo={() => setActiveModal('demo')}
-              onContactUs={() => setActiveModal('contact')}
+            {/* 9. License Section (Device Pairing & License Management) */}
+            <LicenseSection 
+              onNavigate={navigateTo}
             />
+
+            {/* 10. Download Section (Desktop Distribution Installer) */}
+            <DownloadSection />
+
+            {/* 11. FAQ Section (Bordered Accordions) */}
+            <FAQSection />
           </>
         )}
 
       </main>
 
-      {/* Clean Footer */}
-      <footer className="border-t border-slate-200 bg-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#3b28cc] flex items-center justify-center text-white font-fredoka font-bold text-sm">
-                Z
-              </div>
-              <div>
-                <span className="font-bold text-slate-900 block text-sm">ZenterPrime 7.3 Desktop</span>
-                <span className="text-xs text-slate-500">Fast, local-first accounting &amp; billing for Windows</span>
-              </div>
-            </div>
+      {/* Enterprise Footer (4 Columns + Legal) */}
+      <EnterpriseFooter 
+        onNavigate={navigateTo}
+        onScrollTo={handleScrollTo}
+        onOpenModal={(modal) => setActiveModal(modal)}
+      />
 
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-600">
-              <a 
-                href={TRIAL_WEB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#3b28cc] transition-colors cursor-pointer"
-              >
-                14-Day Web Trial
-              </a>
-              <button 
-                onClick={() => {
-                  navigateTo('landing');
-                  setTimeout(() => handleScrollTo('pricing'), 100);
-                }} 
-                className="hover:text-[#3b28cc] transition-colors cursor-pointer"
-              >
-                Pricing Plans
-              </button>
-              <button 
-                onClick={() => navigateTo('renew')} 
-                className="hover:text-[#3b28cc] transition-colors cursor-pointer"
-              >
-                Renew License (₹499/mo)
-              </button>
-              <button 
-                onClick={() => navigateTo('reactivate')} 
-                className="hover:text-[#3b28cc] transition-colors cursor-pointer"
-              >
-                Reactivate License
-              </button>
-              <button 
-                onClick={() => setActiveModal('contact')} 
-                className="hover:text-[#3b28cc] transition-colors cursor-pointer"
-              >
-                Contact Support
-              </button>
-            </div>
-          </div>
-
-          <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
-            <span>&copy; {new Date().getFullYear()} ZenterPrime Solutions. Connected to Supabase Cloud Database.</span>
-            <span>All transactions 256-bit SSL secured.</span>
-          </div>
-        </div>
-      </footer>
-
-      {/* Modals & Popups (including Checkout Popup & Success Modal) */}
+      {/* Modals & Popups */}
       <Modals 
         activeModal={activeModal}
         onClose={() => setActiveModal(null)}
