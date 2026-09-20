@@ -118,7 +118,7 @@ export function App() {
   };
 
   return (
-    <div id="page-wrapper" className="min-h-screen bg-[#F9F9F9] flex flex-col text-slate-900 font-sans selection:bg-[#6D28D9]/15 selection:text-[#6D28D9]">
+    <div id="page-wrapper" className="min-h-screen bg-[#F9F9F9] flex flex-col text-slate-900 font-sans">
       
       {/* 1. Sticky Enterprise Navbar */}
       <Navbar 

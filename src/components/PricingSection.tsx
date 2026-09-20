@@ -46,7 +46,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         
         {/* Section Header from Screenshot (15).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
             <span className="text-[#6D28D9]">Transparent Pricing</span> for Indian Businesses
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
@@ -63,7 +63,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             className="bg-white border border-[#E5E7EB] rounded-[10px] p-6 sm:p-7 flex flex-col justify-between shadow-2xs text-center"
           >
             <div>
-              <h3 className="text-base font-bold text-slate-900">
+              <h3 className="text-base font-normal text-slate-900">
                 Educational
               </h3>
               <div className="text-3xl font-bold text-[#6D28D9] my-1">
@@ -112,7 +112,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             </div>
 
             <div>
-              <h3 className="text-base font-bold text-slate-900 mt-1">
+              <h3 className="text-base font-normal text-slate-900 mt-1">
                 Standard Lifetime
               </h3>
               <div className="text-3xl font-bold text-[#6D28D9] my-1">
@@ -158,7 +158,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             className="bg-white border border-[#E5E7EB] rounded-[10px] p-6 sm:p-7 flex flex-col justify-between shadow-2xs text-center"
           >
             <div>
-              <h3 className="text-base font-bold text-slate-900">
+              <h3 className="text-base font-normal text-slate-900">
                 Professional Lifetime
               </h3>
               <div className="text-3xl font-bold text-[#6D28D9] my-1">

@@ -114,8 +114,8 @@ export default function Features() {
           <span className="text-xs font-bold tracking-widest text-violet-600 uppercase font-mono bg-violet-50 px-3 py-1.5 rounded-full border border-violet-100">
             FEATURES AT A GLANCE
           </span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 tracking-tight mt-4">
-            Everything your Indian business needs. <span className="text-violet-600 font-extrabold">Minus the complexity.</span>
+          <h2 className="text-3xl md:text-5xl font-display font-semibold text-slate-900 tracking-tight mt-4">
+            Everything your Indian business needs. <span className="text-violet-600 font-semibold">Minus the complexity.</span>
           </h2>
           <p className="text-base md:text-lg text-slate-500 mt-4 leading-relaxed font-sans">
             Forget slow enterprise software that takes months to master. ZenterPrime is fast, intuitive, and works out of the box, saving you countless ledger hours.

@@ -63,7 +63,7 @@ export default function BetaProgram({ isFeedbackModalOpen, setIsFeedbackModalOpe
             <span>OPEN BETA CAMPAIGN</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-display font-extrabold tracking-tight text-white leading-tight">
+          <h2 className="text-3xl md:text-5xl font-display font-semibold tracking-tight text-white leading-tight">
             Help us build the absolute best <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-violet-300 to-purple-400">
               accounting experience.

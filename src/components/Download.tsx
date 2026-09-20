@@ -30,7 +30,7 @@ export const DownloadSection: React.FC = () => {
         
         {/* Section Header from Screenshot (16).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
             Download <span className="text-[#6D28D9]">ZenterPrime 7.3</span> for Windows
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
@@ -48,7 +48,7 @@ export const DownloadSection: React.FC = () => {
                 Z
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+                <h3 className="text-base sm:text-lg font-normal text-slate-900 leading-tight">
                   ZenterPrime Installer
                 </h3>
                 <span className="text-xs text-slate-500">

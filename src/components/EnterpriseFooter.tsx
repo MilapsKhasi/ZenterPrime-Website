@@ -20,7 +20,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
           
           {/* Column 1: Product */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-4">
               Product
             </h4>
             <ul className="space-y-2.5">
@@ -71,7 +71,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
 
           {/* Column 2: Support */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-4">
               Support
             </h4>
             <ul className="space-y-2.5">
@@ -120,7 +120,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
 
           {/* Column 3: Company */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-4">
               Company
             </h4>
             <ul className="space-y-2.5">
@@ -155,7 +155,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
 
           {/* Column 4: Legal */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-4">
               Legal
             </h4>
             <ul className="space-y-2.5">

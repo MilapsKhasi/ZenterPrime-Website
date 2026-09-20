@@ -38,8 +38,8 @@ export default function FAQ() {
           <span className="text-xs font-bold tracking-widest text-violet-600 uppercase font-mono bg-violet-50 px-3 py-1.5 rounded-full border border-violet-100">
             COMMON INQUIRIES
           </span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 tracking-tight mt-4">
-            Frequently Asked <span className="text-violet-600 font-extrabold">Questions</span>
+          <h2 className="text-3xl md:text-5xl font-display font-semibold text-slate-900 tracking-tight mt-4">
+            Frequently Asked <span className="text-violet-600 font-semibold">Questions</span>
           </h2>
           <p className="text-sm text-slate-500 mt-4 leading-relaxed font-sans">
             Have a question about security, cloud capabilities, or Indian tax compatibility? Find quick answers below, or get in touch with our product support team.

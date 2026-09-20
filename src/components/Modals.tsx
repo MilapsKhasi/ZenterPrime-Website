@@ -154,7 +154,7 @@ export const Modals: React.FC<ModalsProps> = ({
               </span>
               <h3 
                 id="get-started-popup-title"
-                className="text-xl font-bold text-slate-900 tracking-tight"
+                className="text-xl font-normal text-slate-900 tracking-tight"
               >
                 Get Started with ZenterPrime 7.3
               </h3>
@@ -174,7 +174,7 @@ export const Modals: React.FC<ModalsProps> = ({
                       <Download className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-slate-900">
+                      <h4 className="text-sm font-normal text-slate-900">
                         Download ZenterPrime 7.3
                       </h4>
                       <p className="text-[11px] text-slate-500 font-mono">
@@ -209,7 +209,7 @@ export const Modals: React.FC<ModalsProps> = ({
                       <Laptop className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-slate-900">
+                      <h4 className="text-sm font-normal text-slate-900">
                         Start 14-days web trial
                       </h4>
                       <p className="text-[11px] text-slate-500">
@@ -285,7 +285,7 @@ export const Modals: React.FC<ModalsProps> = ({
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 mb-1">
+                <h3 className="text-lg font-normal text-slate-900 mb-1">
                   Free Trial Registration Received
                 </h3>
                 <p className="text-xs text-slate-600 mb-5 leading-relaxed">
@@ -316,7 +316,7 @@ export const Modals: React.FC<ModalsProps> = ({
                 <div className="mb-4 p-3.5 bg-amber-50 border border-amber-200 rounded-[6px] flex items-start gap-2.5 text-left">
                   <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold text-amber-950">
+                    <h4 className="text-xs font-normal text-amber-950">
                       Plan is Currently Under Development
                     </h4>
                     <p className="text-xs text-amber-900 mt-1 leading-relaxed">
@@ -429,7 +429,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
                 Help &amp; Inquiries
               </span>
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-xl font-normal text-slate-900">
                 Contact ZenterPrime Support
               </h3>
               <p className="text-xs text-slate-600 mt-1">
@@ -440,7 +440,7 @@ export const Modals: React.FC<ModalsProps> = ({
             {contactSubmitted ? (
               <div className="text-center py-4">
                 <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto mb-2" />
-                <h4 className="text-sm font-bold text-slate-900">Message Submitted</h4>
+                <h4 className="text-sm font-normal text-slate-900">Message Submitted</h4>
                 <p className="text-xs text-slate-600 mb-4 mt-1">
                   We have logged your query and our desk will respond to <b>{contactEmail}</b> shortly.
                 </p>
@@ -510,7 +510,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
                 Company Profile
               </span>
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-xl font-normal text-slate-900">
                 About ZenterPrime Solutions
               </h3>
             </div>
@@ -539,7 +539,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
                 Security &amp; Data
               </span>
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-xl font-normal text-slate-900">
                 Privacy &amp; Data Ownership
               </h3>
             </div>
@@ -565,7 +565,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
                 License Terms
               </span>
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-xl font-normal text-slate-900">
                 Terms of Service &amp; License
               </h3>
             </div>
@@ -591,7 +591,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <CheckCircle2 className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-bold text-slate-900 mb-1">
+            <h3 className="text-xl font-normal text-slate-900 mb-1">
               Payment Successful
             </h3>
             <p className="text-xs text-slate-500 mb-4">

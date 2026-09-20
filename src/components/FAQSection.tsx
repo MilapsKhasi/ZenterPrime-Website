@@ -70,7 +70,7 @@ export const FAQSection: React.FC = () => {
           <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
             Support &amp; Answers
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-normal text-slate-900 tracking-tight">
             Frequently Asked Questions
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">

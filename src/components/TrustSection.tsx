@@ -94,7 +94,7 @@ export const TrustSection: React.FC = () => {
               <div className="w-9 h-9 rounded-[6px] bg-purple-50 text-[#6D28D9] flex items-center justify-center mb-3">
                 <FileText className="w-5 h-5 stroke-[2]" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#6D28D9] mb-1.5 leading-snug">
+              <h3 className="text-base sm:text-lg font-normal text-[#6D28D9] mb-1.5 leading-snug">
                 GST Billing Ready
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -113,7 +113,7 @@ export const TrustSection: React.FC = () => {
               <div className="w-9 h-9 rounded-[6px] bg-blue-50 text-[#2563EB] flex items-center justify-center mb-3">
                 <FileText className="w-5 h-5 stroke-[2]" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#2563EB] mb-1.5 leading-snug">
+              <h3 className="text-base sm:text-lg font-normal text-[#2563EB] mb-1.5 leading-snug">
                 Party Ledgers
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -132,7 +132,7 @@ export const TrustSection: React.FC = () => {
               <div className="w-9 h-9 rounded-[6px] bg-teal-50 text-[#0D9488] flex items-center justify-center mb-3">
                 <FileText className="w-5 h-5 stroke-[2]" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#0D9488] mb-1.5 leading-snug">
+              <h3 className="text-base sm:text-lg font-normal text-[#0D9488] mb-1.5 leading-snug">
                 Inventory &amp; Stock
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -151,7 +151,7 @@ export const TrustSection: React.FC = () => {
               <div className="w-9 h-9 rounded-[6px] bg-emerald-50 text-[#16A34A] flex items-center justify-center mb-3">
                 <FileText className="w-5 h-5 stroke-[2]" />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-[#16A34A] mb-1.5 leading-snug">
+              <h3 className="text-base sm:text-lg font-normal text-[#16A34A] mb-1.5 leading-snug">
                 Cashbook Reports
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

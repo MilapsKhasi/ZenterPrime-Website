@@ -27,7 +27,7 @@ export const BackupRestore: React.FC = () => {
         
         {/* Section Header from Screenshot (14).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
             Data Security &amp; Company Backup
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
@@ -53,7 +53,7 @@ export const BackupRestore: React.FC = () => {
                   <IconComponent className="w-4 h-4 stroke-[2]" />
                 </div>
 
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-normal text-slate-900 mb-2">
                   {card.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

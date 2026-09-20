@@ -54,7 +54,7 @@ export const GstFeatures: React.FC = () => {
         
         {/* Header from Screenshot (12).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
             GST Made <span className="text-[#6D28D9]">Practical &amp; Automated</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
@@ -78,7 +78,7 @@ export const GstFeatures: React.FC = () => {
                 {item.num}
               </div>
 
-              <h3 className="text-base font-bold text-slate-900 mb-2">
+              <h3 className="text-base font-normal text-slate-900 mb-2">
                 {item.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -99,7 +99,7 @@ export const GstFeatures: React.FC = () => {
               transition={{ duration: 0.35, delay: 0.2 + idx * 0.08 }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-6 text-center shadow-2xs flex flex-col justify-between"
             >
-              <h3 className="text-base font-bold text-slate-900 mb-2">
+              <h3 className="text-base font-normal text-slate-900 mb-2">
                 {item.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

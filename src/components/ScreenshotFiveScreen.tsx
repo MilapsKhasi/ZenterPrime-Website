@@ -79,7 +79,7 @@ export const ScreenshotFiveScreen: React.FC = () => {
     <div 
       ref={containerRef}
       id="screenshot-5-container"
-      className="w-full relative aspect-[16/9] bg-[#F8FAFC] border-[2px] sm:border-[2.5px] border-black text-slate-800 text-[11px] select-none font-sans shadow-md rounded-[6px] overflow-hidden"
+      className="w-full relative aspect-[16/9] bg-[#F8FAFC] border border-black text-slate-800 text-[11px] select-none font-sans shadow-md rounded-[6px] overflow-hidden"
     >
       <div 
         style={{

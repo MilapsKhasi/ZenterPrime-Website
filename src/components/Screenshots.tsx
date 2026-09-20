@@ -57,9 +57,9 @@ export default function Screenshots() {
           <span className="text-xs font-bold tracking-widest text-violet-600 uppercase font-mono bg-violet-50 px-3 py-1.5 rounded-full border border-violet-100">
             PRODUCT WALKTHROUGH
           </span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 tracking-tight mt-4">
+          <h2 className="text-3xl md:text-5xl font-display font-semibold text-slate-900 tracking-tight mt-4">
             Designed for desktop. <br />
-            <span className="text-violet-600 font-extrabold">Engineered for absolute accuracy.</span>
+            <span className="text-violet-600 font-semibold">Engineered for absolute accuracy.</span>
           </h2>
           <p className="text-base text-slate-500 mt-4 leading-relaxed font-sans">
             Take a closer look at the actual application interface. ZenterPrime combines state-of-the-art secure database architecture with clean, modern visual controls.

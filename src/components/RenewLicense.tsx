@@ -109,7 +109,7 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavi
           <div className="w-14 h-14 bg-purple-50 text-[#3b28cc] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xs">
             <RefreshCw className="w-7 h-7" />
           </div>
-          <h1 className="text-2xl sm:text-4xl font-bold text-slate-950 tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-normal text-slate-950 tracking-tight">
             Renew ZenterPrime License
           </h1>
           <p className="text-sm sm:text-base text-slate-600 font-normal mt-2">
@@ -167,7 +167,7 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavi
             <div className="flex items-start gap-3.5">
               <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-base text-emerald-950 mb-1">License Successfully Renewed!</h4>
+                <h4 className="font-normal text-base text-emerald-950 mb-1">License Successfully Renewed!</h4>
                 <p className="text-xs sm:text-sm text-emerald-800 mb-2">
                   Payment of ₹499 processed. Your monthly license validity has been extended to <b>{renewalSuccess.newExpiry}</b> (End of upcoming month).
                 </p>
@@ -191,7 +191,7 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavi
           <div className="max-w-2xl mx-auto">
             {licenses.length > 0 ? (
               <div className="space-y-4">
-                <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+                <h3 className="text-sm font-normal text-slate-900 uppercase tracking-wider">
                   Found Licenses ({licenses.length})
                 </h3>
 
@@ -272,7 +272,7 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavi
             ) : (
               <div className="text-center py-10 px-4 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
                 <AlertCircle className="w-10 h-10 text-slate-400 mx-auto mb-3" />
-                <h4 className="text-base font-bold text-slate-900 mb-1">No Licenses Found</h4>
+                <h4 className="text-base font-normal text-slate-900 mb-1">No Licenses Found</h4>
                 <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto mb-6">
                   No active or expired license was found registered under <b>{email}</b>.
                 </p>
@@ -290,7 +290,7 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavi
 
         {/* Machine ID Info Section */}
         <div className="mt-10 p-4 bg-purple-50/70 border border-purple-100 rounded-2xl text-xs text-slate-700">
-          <h4 className="font-bold text-slate-900 mb-1.5 flex items-center gap-1.5">
+          <h4 className="font-normal text-slate-900 mb-1.5 flex items-center gap-1.5">
             <HelpCircle className="w-4 h-4 text-[#3b28cc]" />
             <span>How to check your Device Machine ID:</span>
           </h4>

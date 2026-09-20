@@ -67,7 +67,7 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
           {/* Links Quick */}
           <div className="grid grid-cols-2 gap-8 md:col-span-4">
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-200 tracking-widest uppercase font-mono">PRODUCT</h4>
+              <h4 className="text-xs font-normal text-slate-200 tracking-widest uppercase font-mono">PRODUCT</h4>
               <ul className="space-y-2 text-xs">
                 <li>
                   <a href="#features" className="hover:text-violet-400 transition-colors">Features</a>
@@ -85,7 +85,7 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-200 tracking-widest uppercase font-mono">LEGAL</h4>
+              <h4 className="text-xs font-normal text-slate-200 tracking-widest uppercase font-mono">LEGAL</h4>
               <ul className="space-y-2 text-xs">
                 <li>
                   <a href="#privacy" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Privacy Policy</a>
@@ -99,7 +99,7 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
 
           {/* Contact Details */}
           <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-slate-200 tracking-widest uppercase font-mono">GET IN TOUCH</h4>
+            <h4 className="text-xs font-normal text-slate-200 tracking-widest uppercase font-mono">GET IN TOUCH</h4>
             <ul className="space-y-3 text-xs text-slate-400">
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-violet-500 shrink-0" />
@@ -170,7 +170,7 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
                 )}
               </div>
 
-              <h4 className="text-xl font-display font-bold mb-2">
+              <h4 className="text-xl font-display font-normal mb-2">
                 {comingSoonType === 'github' ? 'GitHub Hub Coming Soon' : 'Instagram Page Coming Soon'}
               </h4>
               

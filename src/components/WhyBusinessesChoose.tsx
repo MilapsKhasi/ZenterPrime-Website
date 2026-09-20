@@ -103,7 +103,7 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
           
           {/* Left Column: Heading, Subtitle & Modules List */}
           <div className="lg:col-span-5 flex flex-col text-left">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-normal text-slate-900 tracking-tight leading-tight">
               Why choose <br />
               <span className="text-[#6D28D9]">ZenterPrime ?</span>
             </h2>
@@ -163,7 +163,7 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
               {/* Card Header with Verified Badge */}
               <div className="flex items-center justify-between pb-4 border-b border-[#F1F5F9]">
                 <div>
-                  <h3 className="text-xl font-bold text-slate-900">
+                  <h3 className="text-xl font-normal text-slate-900">
                     {currentData.cardTitle}
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">

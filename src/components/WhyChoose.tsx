@@ -69,9 +69,9 @@ export default function WhyChoose() {
             <span className="text-xs font-bold tracking-widest text-violet-600 uppercase font-mono bg-violet-50 px-3 py-1.5 rounded-full border border-violet-100 inline-block">
               THE ZENTERPRIME DIFFERENCE
             </span>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl md:text-5xl font-display font-semibold text-slate-900 tracking-tight leading-tight">
               Crafted for merchants. <br />
-              <span className="text-violet-600 font-extrabold">Loved by entrepreneurs.</span>
+              <span className="text-violet-600 font-semibold">Loved by entrepreneurs.</span>
             </h2>
             <p className="text-base text-slate-500 leading-relaxed font-sans">
               Traditional accounting software is bloated, slow, and designed for enterprise audit firms rather than small business owners. ZenterPrime is engineered from the ground up to empower local merchants with quick, modern tools.

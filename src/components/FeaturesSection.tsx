@@ -13,13 +13,13 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ onSelectFeatur
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
           <h2 
             id="features-headline-main"
-            className="text-3xl sm:text-5xl font-bold text-slate-950 tracking-tight leading-tight"
+            className="text-3xl sm:text-5xl font-semibold text-slate-950 tracking-tight leading-tight"
           >
             Accounting automation just a
           </h2>
           <div 
             id="features-headline-highlight"
-            className="text-3xl sm:text-5xl font-bold text-[#3b28cc] tracking-tight leading-tight mt-1"
+            className="text-3xl sm:text-5xl font-semibold text-[#3b28cc] tracking-tight leading-tight mt-1"
           >
             click away
           </div>

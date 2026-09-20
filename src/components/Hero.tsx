@@ -41,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-slate-900 tracking-tight leading-[1.18]"
+            className="text-3xl sm:text-4xl lg:text-[44px] font-normal text-slate-900 tracking-tight leading-[1.18]"
           >
             Faster Accounting <br className="hidden sm:inline" />
             <span className="text-[#6D28D9]">for Retail Shopkeepers</span>

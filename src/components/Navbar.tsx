@@ -111,11 +111,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               Pricing
             </button>
             <button 
-              id="nav-link-download" 
-              onClick={() => handleSectionClick('download')}
+              id="nav-link-license" 
+              onClick={() => handleSectionClick('pricing')}
               className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
-              Download
+              License
             </button>
             <button 
               id="nav-link-support" 
@@ -126,14 +126,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </nav>
 
-          {/* Right Side: Activate License Link + Download for Windows Button */}
+          {/* Right Side: Reactivate Existing License Link + Download Button */}
           <div className="hidden sm:flex items-center gap-5">
             <button
               id="nav-link-activate-license"
               onClick={() => onNavigate('reactivate')}
               className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
-              Activate License
+              Reactivate Existing License
             </button>
 
             <button 
@@ -141,8 +141,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={onGetStarted}
               className="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-4 py-2 text-[14px] font-medium transition-colors rounded-[6px] border border-transparent inline-flex items-center gap-2 cursor-pointer active:scale-98"
             >
+              <span>Download</span>
               <Download className="w-4 h-4" />
-              <span>Download for Windows</span>
             </button>
           </div>
 
@@ -207,7 +207,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => { setMobileMenuOpen(false); onNavigate('reactivate'); }}
               className="w-full text-left text-sm font-medium text-slate-700 py-1.5"
             >
-              Activate License
+              Reactivate Existing License
             </button>
             <button 
               id="mobile-nav-btn-download" 

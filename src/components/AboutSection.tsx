@@ -15,7 +15,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onRequestDemo, onCon
           
           <h2 
             id="about-headline"
-            className="text-3xl sm:text-4xl font-bold text-[#3b28cc] tracking-tight mb-8"
+            className="text-3xl sm:text-4xl font-normal text-[#3b28cc] tracking-tight mb-8"
           >
             About us
           </h2>
