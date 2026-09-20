@@ -62,12 +62,12 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.18 }}
-            className="flex flex-wrap items-center justify-center gap-3 mt-6 mb-7"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 mb-7 w-full sm:w-auto"
           >
             <button
               id="hero-btn-download-beta"
               onClick={handleDownload}
-              className="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-[6px] shadow-xs inline-flex items-center justify-center gap-2 cursor-pointer transition-colors"
+              className="w-full max-w-[240px] sm:w-auto sm:max-w-none bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-[6px] shadow-xs inline-flex items-center justify-center gap-2 cursor-pointer transition-colors"
             >
               <span>Download for Windows</span>
               <ArrowDown className="w-4 h-4 stroke-[2.5]" />
@@ -78,7 +78,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               href={trialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white hover:bg-[#F9F9FB] border border-[#D1D5DB] text-slate-800 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-[6px] text-center cursor-pointer transition-colors inline-flex items-center justify-center"
+              className="w-full max-w-[240px] sm:w-auto sm:max-w-none bg-white hover:bg-[#F9F9FB] border border-[#D1D5DB] text-slate-800 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-[6px] text-center cursor-pointer transition-colors inline-flex items-center justify-center"
             >
               <span>14-days Free Trial</span>
             </a>

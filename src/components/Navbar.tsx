@@ -118,15 +118,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               Download
             </button>
             <button 
-              id="nav-link-licensing" 
-              onClick={() => handleSectionClick('licensing')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
-            >
-              License
-            </button>
-            <button 
               id="nav-link-support" 
-              onClick={() => handleSectionClick('support')}
+              onClick={() => handleSectionClick('faq')}
               className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
             >
               Support
@@ -201,15 +194,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             Download
           </button>
           <button 
-            id="mobile-nav-link-licensing" 
-            onClick={() => { setMobileMenuOpen(false); handleSectionClick('licensing'); }}
-            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
-          >
-            License
-          </button>
-          <button 
             id="mobile-nav-link-support" 
-            onClick={() => { setMobileMenuOpen(false); handleSectionClick('support'); }}
+            onClick={() => { setMobileMenuOpen(false); handleSectionClick('faq'); }}
             className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
           >
             Support

@@ -4,11 +4,9 @@ import { Hero } from './components/Hero';
 import { TrustSection } from './components/TrustSection';
 import { WhyBusinessesChoose } from './components/WhyBusinessesChoose';
 import { GstFeatures } from './components/GstFeatures';
-import { ScreenshotsGallery } from './components/ScreenshotsGallery';
 import { DesktopAdvantages } from './components/DesktopAdvantages';
 import { BackupRestore } from './components/BackupRestore';
 import { PricingSection, PlanDetails, PLANS } from './components/PricingSection';
-import { LicenseSection } from './components/LicenseSection';
 import { DownloadSection } from './components/Download';
 import { FAQSection } from './components/FAQSection';
 import { EnterpriseFooter } from './components/EnterpriseFooter';
@@ -175,26 +173,18 @@ export function App() {
             {/* 4. GST Features (Timeline & Statutory Pillars) */}
             <GstFeatures />
 
-            {/* 5. Screenshots Gallery (Tabbed Windows Views) */}
-            <ScreenshotsGallery />
-
-            {/* 6. Desktop Advantages (Offline First, Fast Performance, Data Ownership) */}
+            {/* 5. Desktop Advantages (Offline First, Fast Performance, Data Ownership) */}
             <DesktopAdvantages />
 
-            {/* 7. Backup & Restore (Data Security & Recovery) */}
+            {/* 6. Backup & Restore (Data Security & Recovery) */}
             <BackupRestore />
 
-            {/* 8. Pricing Section (Lifetime Focus) */}
+            {/* 7. Pricing Section (Lifetime Focus) */}
             <PricingSection 
               onSelectPlan={handleSelectPlan}
             />
 
-            {/* 9. License Section (Device Pairing & License Management) */}
-            <LicenseSection 
-              onNavigate={navigateTo}
-            />
-
-            {/* 10. Download Section (Desktop Distribution Installer) */}
+            {/* 8. Download Section (Desktop Distribution Installer) */}
             <DownloadSection />
 
             {/* 11. FAQ Section (Bordered Accordions) */}

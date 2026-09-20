@@ -31,7 +31,7 @@ export const FAQSection: React.FC = () => {
       id: 'backup',
       category: 'backup',
       question: 'How does data backup and company restore work?',
-      answer: 'You can create a compressed, single-file (.zpb) backup of your company ledger with one click at the end of every business day. You can save backups onto USB pen drives or external hard disks. In case of hardware upgrades or PC failure, your company can be completely restored within seconds.'
+      answer: 'You can create a single-file (.json) backup of your company ledger with one click at the end of every business day. You can save backups onto USB pen drives or external hard disks. In case of hardware upgrades or PC failure, your company can be completely restored within seconds.'
     },
     {
       id: 'trial',
@@ -61,7 +61,8 @@ export const FAQSection: React.FC = () => {
   });
 
   return (
-    <section id="faq" className="py-20 md:py-22 bg-white border-b border-[#E5E7EB]">
+    <section id="faq" className="py-20 md:py-22 bg-white border-b border-[#E5E7EB] relative">
+      <div id="support" className="absolute -top-18 left-0" />
       <div className="max-w-[840px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
