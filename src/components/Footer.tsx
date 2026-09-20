@@ -85,19 +85,13 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-slate-200 tracking-widest uppercase font-mono">LEGAL & DOCS</h4>
+              <h4 className="text-xs font-bold text-slate-200 tracking-widest uppercase font-mono">LEGAL</h4>
               <ul className="space-y-2 text-xs">
                 <li>
-                  <a href="#privacy" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Privacy Statement</a>
+                  <a href="#privacy" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Privacy Policy</a>
                 </li>
                 <li>
-                  <a href="#terms" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Terms of License</a>
-                </li>
-                <li>
-                  <a href="#docs" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Documentation</a>
-                </li>
-                <li>
-                  <button onClick={onFeedbackClick} className="hover:text-violet-400 transition-colors text-left cursor-pointer">Send Feedback</button>
+                  <a href="#terms" onClick={(e) => { e.preventDefault(); }} className="hover:text-violet-400 transition-colors">Terms of Service</a>
                 </li>
               </ul>
             </div>
@@ -120,8 +114,15 @@ export default function Footer({ onFeedbackClick, onDownloadClick }: FooterProps
 
         </div>
 
+        {/* Registration & GST Notice */}
+        <div className="pt-6 pb-2 border-t border-slate-200 text-slate-500 text-xs">
+          <p>
+            <span className="font-semibold text-slate-700">Notice:</span> ZenterPrime Solutions is currently an unregistered company that does not have a GST-registered firm, so purchasing a license will not include any GST.
+          </p>
+        </div>
+
         {/* Footer Bottom copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
           <p>© ZenterPrime. All rights reserved.</p>
           <p className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse"></span>

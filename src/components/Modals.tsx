@@ -517,9 +517,12 @@ export const Modals: React.FC<ModalsProps> = ({
             <p className="text-xs text-slate-600 leading-relaxed mb-3">
               ZenterPrime is a dedicated retail business accounting software engineered for Indian shop owners, wholesalers, and billing counters. Built with an offline-first philosophy, ZenterPrime ensures that grocery stores, hardware merchants, pharmacy counters, and textile shops maintain uninterrupted billing regardless of internet availability.
             </p>
-            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+            <p className="text-xs text-slate-600 leading-relaxed mb-3">
               Our software strictly complies with CBIC GST mandates, offering automatic tax splitting, standard HSN/SAC management, and one-click data backups.
             </p>
+            <div className="bg-slate-50 border border-slate-200 rounded-[6px] p-2.5 mb-4 text-[11px] text-slate-600 leading-relaxed">
+              <span className="font-semibold text-slate-800">Notice:</span> ZenterPrime Solutions is currently an unregistered company that does not have a GST-registered firm, so purchasing a license will not include any GST.
+            </div>
             <button
               onClick={onClose}
               className="w-full bg-[#F3F4F6] hover:bg-[#E5E7EB] text-slate-800 text-xs font-semibold py-2 rounded-[6px]"

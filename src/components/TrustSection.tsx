@@ -136,7 +136,7 @@ export const TrustSection: React.FC = () => {
                 Inventory &amp; Stock
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Real-time SKU barcode scanning, low-stock reorder alerts, and batch expiry
+                Real-time low stock / out of stock alerts and stock summary tracking
               </p>
             </motion.div>
 

@@ -27,6 +27,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onRequestDemo, onCon
             <p id="about-paragraph-2">
               Our goal is to offer the simple and smart accounting experience for never losing track of their books.
             </p>
+            <p id="about-paragraph-gst-notice" className="text-sm text-slate-600 bg-white p-3 rounded-lg border border-slate-200">
+              <span className="font-semibold text-slate-800">Please note:</span> ZenterPrime Solutions is currently an unregistered company that does not have a GST-registered firm, so purchasing a license will not include any GST.
+            </p>
             <p id="about-paragraph-3" className="font-medium text-slate-900">
               Thank you!
             </p>

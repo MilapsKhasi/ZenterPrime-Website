@@ -161,6 +161,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
             <ul className="space-y-2.5">
               <li>
                 <button 
+                  id="footer-btn-privacy"
                   onClick={() => onOpenModal('privacy')}
                   className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
                 >
@@ -169,29 +170,27 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               </li>
               <li>
                 <button 
+                  id="footer-btn-terms"
                   onClick={() => onOpenModal('terms')}
                   className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
                 >
                   Terms of Service
                 </button>
               </li>
-              <li>
-                <span className="text-slate-500">
-                  Perpetual License Agreement
-                </span>
-              </li>
-              <li>
-                <span className="text-slate-500">
-                  CBIC GST Compliance Notice
-                </span>
-              </li>
             </ul>
           </div>
 
         </div>
 
+        {/* Unregistered Company GST Notice */}
+        <div className="pt-6 pb-2 border-t border-[#E5E7EB] text-slate-500 text-[11.5px] sm:text-xs">
+          <p>
+            <span className="font-semibold text-slate-700">Notice:</span> ZenterPrime Solutions is currently an unregistered company that does not have a GST-registered firm, so purchasing a license will not include any GST.
+          </p>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded-[4px] bg-[#6D28D9] text-white flex items-center justify-center font-bold font-fredoka text-xs">
               Z

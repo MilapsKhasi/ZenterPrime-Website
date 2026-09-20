@@ -13,11 +13,11 @@ export const DesktopAdvantages: React.FC = () => {
       ]
     },
     {
-      title: 'Instant Keyboard Flow',
+      title: 'Instant Keyboard Shortcuts',
       bullets: [
-        'Instant SKU barcode scans with zero lag',
-        'Full keyboard shortcut coverage (F1 to F12)',
-        'Lightweight on standard Dual-Core / 4GB RAM PCs'
+        'Multi-companies and Accounts Management',
+        'Easier and effortless to remember shortcuts',
+        'Complete Offline work with dual sync to online databases.'
       ]
     }
   ];
