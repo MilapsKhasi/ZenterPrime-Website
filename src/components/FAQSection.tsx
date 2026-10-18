@@ -19,7 +19,7 @@ export const FAQSection: React.FC = () => {
       id: 'offline',
       category: 'offline',
       question: 'Does ZenterPrime work completely offline?',
-      answer: 'Yes. ZenterPrime 7.3 is a native Windows desktop software. All daily billing counters, sales vouchers, inventory tracking, party ledgers, and cashbook records run 100% offline without requiring any active internet connection. Your store billing never halts during broadband outages.'
+      answer: 'Yes. ZenterPrime 7.4 is a native Windows desktop software. All daily billing counters, sales vouchers, inventory tracking, party ledgers, and cashbook records run 100% offline without requiring any active internet connection. Your store billing never halts during broadband outages.'
     },
     {
       id: 'gst',
@@ -49,7 +49,7 @@ export const FAQSection: React.FC = () => {
       id: 'windows-versions',
       category: 'offline',
       question: 'Which versions of Microsoft Windows are supported?',
-      answer: 'ZenterPrime 7.3 supports Windows 11, Windows 10, Windows 8.1, and Windows 7 (SP1) in both 64-bit and 32-bit architectures. It requires a minimum of 2 GB RAM and 200 MB disk storage, making it exceptionally lightweight and fast even on older billing counter PCs.'
+      answer: 'ZenterPrime 7.4 supports Windows 11, Windows 10, Windows 8.1, and Windows 7 (SP1) in both 64-bit and 32-bit architectures. It requires a minimum of 2 GB RAM and 200 MB disk storage, making it exceptionally lightweight and fast even on older billing counter PCs.'
     }
   ];
 

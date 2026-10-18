@@ -13,7 +13,7 @@ html {
 
 html, body, #root, #page-wrapper {
   font-family: "Calibri", "Carlito", Candara, "Segoe UI", Segoe, -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
-  background-color: #F9F9F9;
+  background-color: #0b0f19;
   color: #111827;
   overflow-x: clip;
 }
@@ -42,3 +42,22 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   transition-duration: 200ms;
 }
+
+@keyframes cinematicGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-cinematic-glow {
+  animation: cinematicGlow 8s ease-in-out infinite;
+}
+
+@keyframes floatSubtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float-subtle {
+  animation: floatSubtle 5s ease-in-out infinite;
+}
+

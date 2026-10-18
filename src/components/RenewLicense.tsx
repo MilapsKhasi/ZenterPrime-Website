@@ -314,7 +314,7 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavi
             rel="noopener noreferrer"
             className="text-[#3b28cc] hover:underline font-medium cursor-pointer"
           >
-            Download ZenterPrime.Setup.7.3.0.exe
+            Download ZenterPrime.Setup.7.4.0.exe
           </a>
         </div>
 

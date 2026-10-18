@@ -14,7 +14,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = DOWNLOAD_EXE_URL;
-    link.download = 'ZenterPrime.Setup.7.3.0.exe';
+    link.download = 'ZenterPrime.Setup.7.4.0.exe';
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
     document.body.appendChild(link);
@@ -30,46 +30,64 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   ];
 
   return (
-    <section id="hero-section" className="pt-10 sm:pt-14 pb-14 sm:pb-18 bg-white border-b border-[#E5E7EB] overflow-hidden">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="hero-section" className="relative pt-24 sm:pt-28 pb-16 sm:pb-24 bg-[#0b0f19] text-white border-b border-violet-900/30 overflow-hidden">
+      
+      {/* Cinematic Ambient Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-violet-600/20 via-indigo-600/10 to-transparent blur-3xl pointer-events-none animate-cinematic-glow -z-10" />
+      <div className="absolute top-40 left-10 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-40 right-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Text & Badges Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-10 sm:mb-14">
           
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-950/80 border border-violet-500/30 text-violet-300 text-xs font-semibold tracking-wide uppercase mb-6 shadow-inner shadow-violet-500/20"
+          >
+            <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
+            ZenterPrime 7.4 • Enterprise Release
+          </motion.div>
+
           <motion.h1 
             id="hero-headline-main"
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-3xl sm:text-4xl lg:text-[44px] font-normal text-slate-900 tracking-tight leading-[1.18]"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.12]"
           >
-            Faster Accounting <br className="hidden sm:inline" />
-            <span className="text-[#6D28D9]">for Retail Shopkeepers</span>
+            Cinematic Speed & Precision <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-300 to-indigo-300 font-semibold">
+              for Retail Shopkeepers
+            </span>
           </motion.h1>
           
           <motion.p 
             id="hero-supporting-text"
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-sm sm:text-base text-slate-600 font-normal mt-4 leading-relaxed max-w-xl"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-base sm:text-lg text-slate-300 font-normal mt-6 leading-relaxed max-w-2xl"
           >
-            Instant GST billing, live stock control, party ledgers, and cashbook on your shop PC.
+            Instant GST billing, live stock control, party ledgers, and cashbook operating with lightning speed on your shop PC.
           </motion.p>
 
           {/* Action Buttons */}
           <motion.div 
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.18 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 mb-7 w-full sm:w-auto"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 mb-10 w-full sm:w-auto"
           >
             <button
               id="hero-btn-download-beta"
               onClick={handleDownload}
-              className="w-full max-w-[240px] sm:w-auto sm:max-w-none bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-[6px] shadow-xs inline-flex items-center justify-center gap-2 cursor-pointer transition-colors"
+              className="w-full sm:w-auto bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white px-7 py-3.5 text-sm font-bold rounded-xl shadow-xl shadow-violet-900/50 border border-violet-400/30 inline-flex items-center justify-center gap-2 cursor-pointer transition-all transform hover:-translate-y-0.5"
             >
-              <span>Download for Windows</span>
+              <span>Download for Windows (7.4)</span>
               <ArrowDown className="w-4 h-4 stroke-[2.5]" />
             </button>
 
@@ -78,28 +96,28 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               href={trialUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full max-w-[240px] sm:w-auto sm:max-w-none bg-white hover:bg-[#F9F9FB] border border-[#D1D5DB] text-slate-800 px-5 py-2.5 text-xs sm:text-sm font-semibold rounded-[6px] text-center cursor-pointer transition-colors inline-flex items-center justify-center"
+              className="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-200 px-7 py-3.5 text-sm font-semibold rounded-xl text-center cursor-pointer transition-all inline-flex items-center justify-center hover:text-white"
             >
-              <span>14-days Free Trial</span>
+              <span>14-days Free Live Trial</span>
             </a>
           </motion.div>
 
-          {/* 4 Feature Tags with Green Border & Green Checkbox Icon */}
+          {/* 4 Feature Tags */}
           <motion.div 
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.25 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-2xl"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 w-full max-w-3xl"
           >
             {featureBadges.map((badge) => (
               <div 
                 key={badge.title}
-                className="bg-white border border-emerald-500 rounded-[8px] px-3.5 py-2.5 flex items-center justify-between shadow-2xs"
+                className="bg-slate-900/80 backdrop-blur-md border border-emerald-500/60 rounded-xl px-4 py-3 flex items-center justify-between shadow-lg shadow-emerald-950/20"
               >
-                <span className="text-xs sm:text-sm font-medium text-slate-900">
+                <span className="text-xs sm:text-sm font-medium text-slate-200">
                   {badge.title}
                 </span>
-                <div className="w-4 h-4 rounded-[3px] bg-emerald-500 text-white flex items-center justify-center shrink-0 ml-2">
+                <div className="w-4 h-4 rounded-[4px] bg-emerald-500 text-slate-950 flex items-center justify-center shrink-0 ml-2 font-bold">
                   <Check className="w-3 h-3 stroke-[3]" />
                 </div>
               </div>
@@ -108,12 +126,18 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
 
         </div>
 
-        {/* Full-Width Landscape Screenshot Frame (No Internal Scroll) */}
+        {/* Full-Width Landscape Screenshot Frame with exact 0.5px solid #d9d9d9 border */}
         <motion.div 
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="w-full max-w-[1240px] mx-auto"
+          transition={{ duration: 0.7, delay: 0.45 }}
+          id="screenshot-5-container"
+          className="w-full max-w-[1240px] mx-auto rounded-xl overflow-hidden shadow-2xl shadow-black/80"
+          style={{
+            borderWidth: '0.5px',
+            borderStyle: 'solid',
+            borderColor: '#d9d9d9',
+          }}
         >
           <ScreenshotFiveScreen />
         </motion.div>

@@ -41,7 +41,7 @@ export const AppMockup: React.FC = () => {
             </div>
             <div className="flex items-center gap-2">
               <span className="font-semibold text-xs text-slate-800">
-                ZenterPrime 7.3 Desktop
+                ZenterPrime 7.4 Desktop
               </span>
               <span className="text-slate-400">|</span>
               <span className="text-xs text-slate-600 font-medium">

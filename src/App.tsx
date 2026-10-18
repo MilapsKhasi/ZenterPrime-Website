@@ -106,7 +106,7 @@ export function App() {
     try {
       const link = document.createElement('a');
       link.href = DOWNLOAD_EXE_URL;
-      link.setAttribute('download', 'ZenterPrime.Setup.7.3.0.exe');
+      link.setAttribute('download', 'ZenterPrime.Setup.7.4.0.exe');
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
       document.body.appendChild(link);

@@ -53,12 +53,12 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
                   onClick={() => onScrollTo('download')}
                   className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
                 >
-                  Download Setup 7.3
+                  Download Setup 7.4
                 </button>
               </li>
               <li>
                 <a 
-                  href="https://github.com/MilapsKhasi/Makzon-Developers/releases/tag/zenterprime-beta"
+                  href="https://github.com/MilapsKhasi/ZenterPrime-7.4/releases/tag/release-7.4"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#6D28D9] transition-colors inline-block"
@@ -195,7 +195,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
             <div className="w-5 h-5 rounded-[4px] bg-[#6D28D9] text-white flex items-center justify-center font-bold font-fredoka text-xs">
               Z
             </div>
-            <span className="font-semibold text-slate-800">ZenterPrime 7.3 Desktop</span>
+            <span className="font-semibold text-slate-800">ZenterPrime 7.4 Desktop</span>
           </div>
 
           <p className="text-center sm:text-right text-slate-500 text-xs">

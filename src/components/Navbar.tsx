@@ -51,14 +51,14 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header 
       id="main-navbar" 
-      className={`sticky top-0 z-50 w-full bg-white border-b border-[#E5E7EB] transition-colors ${
-        isScrolled ? 'border-[#D1D5DB]' : 'border-[#E5E7EB]'
+      className={`sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 border-b transition-all duration-300 ${
+        isScrolled ? 'shadow-sm border-slate-200 bg-white/95' : 'border-slate-100/80'
       }`}
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px]">
           
-          {/* Left: Logo + ZenterPrime + v7.3 Desktop badge */}
+          {/* Left: Logo + ZenterPrime + v7.4 Desktop badge */}
           <div className="flex items-center gap-3 shrink-0">
             <a 
               id="brand-logo-link" 
@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   ZenterPrime
                 </span>
                 <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-[4px] text-[11px] font-medium bg-[#F3F4F6] text-slate-700 border border-[#E5E7EB]">
-                  v7.3 Desktop
+                  v7.4 Desktop
                 </span>
               </div>
             </a>

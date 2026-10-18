@@ -16,7 +16,7 @@ export const DownloadSection: React.FC = () => {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = DOWNLOAD_EXE_URL;
-    link.download = 'ZenterPrime.Setup.7.3.0.exe';
+    link.download = 'ZenterPrime.Setup.7.4.0.exe';
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
     document.body.appendChild(link);
@@ -31,7 +31,7 @@ export const DownloadSection: React.FC = () => {
         {/* Section Header from Screenshot (16).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
-            Download <span className="text-[#6D28D9]">ZenterPrime 7.3</span> for Windows
+            Download <span className="text-[#6D28D9]">ZenterPrime 7.4</span> for Windows
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
             Standard standalone offline installer. No background service daemon, no telemetry bloat, and zero mandatory cloud sync.
@@ -52,7 +52,7 @@ export const DownloadSection: React.FC = () => {
                   ZenterPrime Installer
                 </h3>
                 <span className="text-xs text-slate-500">
-                  Version 7.3.0 • Standalone Setup (.exe)
+                  Version 7.4.0 • Standalone Setup (.exe)
                 </span>
               </div>
             </div>

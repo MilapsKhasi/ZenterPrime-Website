@@ -35,35 +35,35 @@ export default function Header({ onDownloadClick, onFeedbackClick }: HeaderProps
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-xs py-3' 
-          : 'bg-transparent py-5'
+          ? 'bg-slate-950/90 backdrop-blur-xl border-b border-violet-500/30 shadow-2xl py-3' 
+          : 'bg-slate-950/70 backdrop-blur-md border-b border-white/10 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <a href="#" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md shadow-violet-200 group-hover:scale-105 transition-transform duration-200 bg-white">
+          <a href="#" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-violet-900/40 border border-violet-500/30 group-hover:scale-105 transition-transform duration-200 bg-slate-900">
               <img src="/ZenterPrime New Logo.png" alt="ZenterPrime Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
             <div>
-              <span className="font-display font-bold text-xl tracking-tight text-slate-900">
-                Zenter<span className="text-violet-600">Prime</span>
+              <span className="font-display font-bold text-lg tracking-tight text-white">
+                Zenter<span className="text-violet-400">Prime</span>
               </span>
-              <span className="block text-[8px] tracking-widest font-bold text-violet-500 uppercase font-mono leading-none">
-                GST Accounting
+              <span className="block text-[9px] tracking-widest font-bold text-violet-300 uppercase font-mono leading-none">
+                7.4 Cinematic Edition
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-7 bg-slate-900/80 border border-white/10 px-6 py-2 rounded-full shadow-inner">
             {menuItems.map((item) => (
               <a 
                 key={item.label}
                 href={item.href} 
-                className="text-sm font-semibold text-slate-600 hover:text-violet-600 transition-colors duration-150"
+                className="text-xs font-semibold text-slate-300 hover:text-violet-300 transition-colors duration-150 tracking-wide uppercase"
               >
                 {item.label}
               </a>
@@ -71,19 +71,19 @@ export default function Header({ onDownloadClick, onFeedbackClick }: HeaderProps
           </nav>
 
           {/* CTAs */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3">
             <button 
               onClick={onFeedbackClick}
-              className="text-sm font-semibold text-slate-600 hover:text-slate-900 px-4 py-2 hover:bg-slate-50 rounded-xl transition-all"
+              className="text-xs font-semibold text-slate-300 hover:text-white px-4 py-2 hover:bg-white/5 rounded-lg transition-all"
             >
               Feedback Beta
             </button>
             <button 
               onClick={onDownloadClick}
-              className="bg-violet-600 hover:bg-violet-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl shadow-xs hover:shadow-md hover:shadow-violet-100 transition-all duration-150 flex items-center gap-1.5 cursor-pointer"
+              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-xs font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-violet-900/50 border border-violet-400/30 transition-all duration-150 flex items-center gap-1.5 cursor-pointer transform hover:-translate-y-0.5"
             >
               <Download className="w-4 h-4" />
-              Download Beta
+              Download 7.4
             </button>
           </div>
 
