@@ -22,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15] mb-6">
-            The Ultimate GST Billing & <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Accounting Suite</span>
+            Faster accounting for <span className="text-[#4338ca]">Retail Shopkeepers</span>
           </h1>
 
           <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={onGetStarted}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm sm:text-base shadow-lg shadow-purple-600/25 transition-all duration-200 gap-2"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-[#4338ca] hover:bg-[#3730a3] text-white font-semibold text-sm sm:text-base transition-all duration-200 gap-2"
             >
               <span>Download for Desktop</span>
               <ArrowRight className="w-4 h-4" />
@@ -42,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Free Trial
               </span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-purple-500" /> 100% Secure & Private
+                <ShieldCheck className="w-4 h-4 text-[#4338ca]" /> 100% Secure & Private
               </span>
             </div>
           </div>
@@ -54,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           id="screenshot-5-container"
-          className="w-full max-w-[1240px] mx-auto rounded-xl overflow-hidden shadow-2xl bg-white"
+          className="w-full max-w-[1240px] mx-auto rounded-xl overflow-hidden bg-white"
           style={{
             borderWidth: '0.5px',
             borderStyle: 'solid',
