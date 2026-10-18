@@ -105,7 +105,7 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
           <div className="lg:col-span-5 flex flex-col text-left">
             <h2 className="text-3xl sm:text-4xl font-normal text-slate-900 tracking-tight leading-tight">
               Why choose <br />
-              <span className="text-[#6D28D9]">ZenterPrime ?</span>
+              <span className="text-[#4338ca]">ZenterPrime ?</span>
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 mt-4 leading-relaxed">
@@ -122,7 +122,7 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
                     onClick={() => setSelectedModule(m.id)}
                     className={`w-full text-left px-4 py-2.5 rounded-[6px] text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
                       isSelected 
-                        ? 'bg-[#6D28D9] text-white shadow-xs font-semibold' 
+                        ? 'bg-[#4338ca] text-white shadow-xs font-semibold' 
                         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                     }`}
                   >
@@ -135,7 +135,7 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
               <div className="pt-2">
                 <button 
                   onClick={() => setSelectedModule(modules[(modules.findIndex(m => m.id === selectedModule) + 1) % modules.length].id)}
-                  className="text-sm font-semibold text-slate-900 hover:text-[#6D28D9] flex items-center gap-1 cursor-pointer transition-colors"
+                  className="text-sm font-semibold text-slate-900 hover:text-[#4338ca] flex items-center gap-1 cursor-pointer transition-colors"
                 >
                   <span>View More</span>
                   <ChevronRight className="w-4 h-4" />
@@ -188,7 +188,7 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
               {/* Grand Total Footer */}
               <div className="pt-4 border-t border-[#F1F5F9] flex items-center justify-between">
                 <span className="text-sm font-bold text-slate-900">Grand Total</span>
-                <span className="text-xl font-bold text-[#6D28D9]">{currentData.grandTotal}</span>
+                <span className="text-xl font-bold text-[#4338ca]">{currentData.grandTotal}</span>
               </div>
 
             </motion.div>

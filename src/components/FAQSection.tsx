@@ -67,7 +67,7 @@ export const FAQSection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+          <span className="text-xs font-semibold text-[#4338ca] uppercase tracking-wider block mb-1">
             Support &amp; Answers
           </span>
           <h2 className="text-2xl sm:text-3xl font-normal text-slate-900 tracking-tight">
@@ -92,7 +92,7 @@ export const FAQSection: React.FC = () => {
               onClick={() => { setSelectedCategory(cat.id); setOpenIndex(0); }}
               className={`px-3 py-1.5 rounded-[6px] text-xs font-semibold border cursor-pointer transition-colors ${
                 selectedCategory === cat.id
-                  ? 'bg-[#6D28D9] text-white border-[#6D28D9]'
+                  ? 'bg-[#4338ca] text-white border-[#4338ca]'
                   : 'bg-white text-slate-600 border-[#E5E7EB] hover:bg-[#FCFCFD]'
               }`}
             >
@@ -117,10 +117,10 @@ export const FAQSection: React.FC = () => {
                   aria-expanded={isOpen}
                 >
                   <span className="flex items-center gap-3 pr-4">
-                    <HelpCircle className="w-4 h-4 text-[#6D28D9] shrink-0 stroke-[1.75]" />
+                    <HelpCircle className="w-4 h-4 text-[#4338ca] shrink-0 stroke-[1.75]" />
                     <span>{faq.question}</span>
                   </span>
-                  <ChevronDown className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#6D28D9]' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#4338ca]' : ''}`} />
                 </button>
 
                 <AnimatePresence initial={false}>

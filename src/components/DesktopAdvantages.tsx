@@ -29,7 +29,7 @@ export const DesktopAdvantages: React.FC = () => {
         {/* Section Header from Screenshot (13).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
-            Desktop Software <span className="text-[#6D28D9]">Advantages</span>
+            Desktop Software <span className="text-[#4338ca]">Advantages</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
             Why retail counters, wholesalers, and accountants rely on standalone Windows desktop applications over browser tabs.

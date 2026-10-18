@@ -68,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <div 
                 id="brand-logo-icon" 
-                className="w-9 h-9 rounded-[8px] bg-[#6D28D9] flex items-center justify-center text-white shrink-0 font-fredoka text-xl font-bold"
+                className="w-9 h-9 rounded-[8px] bg-[#4338ca] flex items-center justify-center text-white shrink-0 font-fredoka text-xl font-bold"
               >
                 Z
               </div>
@@ -92,35 +92,35 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button 
               id="nav-link-features" 
               onClick={() => handleSectionClick('features')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
             >
               Features
             </button>
             <button 
               id="nav-link-gst-billing" 
               onClick={() => handleSectionClick('gst-billing')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
             >
               GST Billing
             </button>
             <button 
               id="nav-link-pricing" 
               onClick={() => handleSectionClick('pricing')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
             >
               Pricing
             </button>
             <button 
               id="nav-link-license" 
               onClick={() => handleSectionClick('pricing')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
             >
               License
             </button>
             <button 
               id="nav-link-support" 
               onClick={() => handleSectionClick('faq')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
             >
               Support
             </button>
@@ -131,7 +131,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-activate-license"
               onClick={() => onNavigate('reactivate')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#6D28D9] transition-colors cursor-pointer"
+              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
             >
               Reactivate Existing License
             </button>
@@ -139,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button 
               id="nav-btn-download-windows" 
               onClick={onGetStarted}
-              className="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-4 py-2 text-[14px] font-medium transition-colors rounded-[6px] border border-transparent inline-flex items-center gap-2 cursor-pointer active:scale-98"
+              className="bg-[#4338ca] hover:bg-[#5B21B6] text-white px-4 py-2 text-[14px] font-medium transition-colors rounded-[6px] border border-transparent inline-flex items-center gap-2 cursor-pointer active:scale-98"
             >
               <span>Download</span>
               <Download className="w-4 h-4" />
@@ -168,35 +168,35 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button 
             id="mobile-nav-link-features" 
             onClick={() => { setMobileMenuOpen(false); handleSectionClick('features'); }}
-            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
+            className="w-full text-left text-slate-800 hover:text-[#4338ca] text-sm font-medium py-1.5"
           >
             Features
           </button>
           <button 
             id="mobile-nav-link-gst-billing" 
             onClick={() => { setMobileMenuOpen(false); handleSectionClick('gst-billing'); }}
-            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
+            className="w-full text-left text-slate-800 hover:text-[#4338ca] text-sm font-medium py-1.5"
           >
             GST Billing
           </button>
           <button 
             id="mobile-nav-link-pricing" 
             onClick={() => { setMobileMenuOpen(false); handleSectionClick('pricing'); }}
-            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
+            className="w-full text-left text-slate-800 hover:text-[#4338ca] text-sm font-medium py-1.5"
           >
             Pricing
           </button>
           <button 
             id="mobile-nav-link-download" 
             onClick={() => { setMobileMenuOpen(false); handleSectionClick('download'); }}
-            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
+            className="w-full text-left text-slate-800 hover:text-[#4338ca] text-sm font-medium py-1.5"
           >
             Download
           </button>
           <button 
             id="mobile-nav-link-support" 
             onClick={() => { setMobileMenuOpen(false); handleSectionClick('faq'); }}
-            className="w-full text-left text-slate-800 hover:text-[#6D28D9] text-sm font-medium py-1.5"
+            className="w-full text-left text-slate-800 hover:text-[#4338ca] text-sm font-medium py-1.5"
           >
             Support
           </button>
@@ -212,7 +212,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button 
               id="mobile-nav-btn-download" 
               onClick={() => { setMobileMenuOpen(false); onGetStarted(); }}
-              className="w-full text-center bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-4 py-2.5 text-sm font-medium rounded-[6px] block cursor-pointer"
+              className="w-full text-center bg-[#4338ca] hover:bg-[#5B21B6] text-white px-4 py-2.5 text-sm font-medium rounded-[6px] block cursor-pointer"
             >
               Download for Windows
             </button>

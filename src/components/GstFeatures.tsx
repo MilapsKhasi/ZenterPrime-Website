@@ -55,7 +55,7 @@ export const GstFeatures: React.FC = () => {
         {/* Header from Screenshot (12).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
-            GST Made <span className="text-[#6D28D9]">Practical &amp; Automated</span>
+            GST Made <span className="text-[#4338ca]">Practical &amp; Automated</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
             Configure your company once and let ZenterPrime handle tax rates, intra-state splits, and audit reports on your desktop.

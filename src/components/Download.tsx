@@ -31,7 +31,7 @@ export const DownloadSection: React.FC = () => {
         {/* Section Header from Screenshot (16).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
-            Download <span className="text-[#6D28D9]">ZenterPrime 7.4</span> for Windows
+            Download <span className="text-[#4338ca]">ZenterPrime 7.4</span> for Windows
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
             Standard standalone offline installer. No background service daemon, no telemetry bloat, and zero mandatory cloud sync.
@@ -44,7 +44,7 @@ export const DownloadSection: React.FC = () => {
           {/* Top Row: ZenterPrime Installer & Download Button */}
           <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5E7EB]">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-[6px] bg-[#6D28D9] text-white flex items-center justify-center font-bold text-xl shrink-0">
+              <div className="w-10 h-10 rounded-[6px] bg-[#4338ca] text-white flex items-center justify-center font-bold text-xl shrink-0">
                 Z
               </div>
               <div>
@@ -60,7 +60,7 @@ export const DownloadSection: React.FC = () => {
             <button
               id="btn-download-installer-page"
               onClick={handleDownload}
-              className="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-6 py-2.5 rounded-[6px] text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-xs"
+              className="bg-[#4338ca] hover:bg-[#5B21B6] text-white px-6 py-2.5 rounded-[6px] text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-xs"
             >
               <Download className="w-4 h-4" />
               <span>Download for Windows</span>
@@ -110,7 +110,7 @@ export const DownloadSection: React.FC = () => {
           </div>
           <button
             onClick={handleCopyChecksum}
-            className="shrink-0 inline-flex items-center gap-1.5 text-xs text-[#6D28D9] hover:underline font-medium cursor-pointer"
+            className="shrink-0 inline-flex items-center gap-1.5 text-xs text-[#4338ca] hover:underline font-medium cursor-pointer"
           >
             {copiedChecksum ? (
               <>

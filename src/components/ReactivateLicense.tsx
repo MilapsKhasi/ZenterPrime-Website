@@ -97,7 +97,7 @@ export const ReactivateLicense: React.FC<ReactivateLicenseProps> = () => {
               className={`w-full h-11 px-4 text-sm text-slate-900 rounded-[6px] bg-white transition-colors outline-none ${
                 verified 
                   ? 'border border-[#10b981] pr-28 ring-0' 
-                  : 'border border-[#D1D5DB] focus:border-[#6D28D9]'
+                  : 'border border-[#D1D5DB] focus:border-[#4338ca]'
               }`}
             />
 
@@ -124,7 +124,7 @@ export const ReactivateLicense: React.FC<ReactivateLicenseProps> = () => {
             id="verify-email-button"
             type="submit"
             disabled={loading}
-            className="w-full h-11 mt-3.5 bg-[#6D28D9] hover:bg-[#5B21B6] text-white text-sm font-medium rounded-[6px] transition-colors flex items-center justify-center cursor-pointer active:scale-[0.99] disabled:opacity-80"
+            className="w-full h-11 mt-3.5 bg-[#4338ca] hover:bg-[#5B21B6] text-white text-sm font-medium rounded-[6px] transition-colors flex items-center justify-center cursor-pointer active:scale-[0.99] disabled:opacity-80"
           >
             {loading ? (
               <div className="flex items-center gap-2">
@@ -149,13 +149,13 @@ export const ReactivateLicense: React.FC<ReactivateLicenseProps> = () => {
                 <div
                   key={lic.license_id || index}
                   onClick={() => handleCopy(lic.license_id)}
-                  className="bg-white border border-[#E5E7EB] rounded-[8px] p-4 sm:p-5 transition-all hover:border-[#6D28D9]/40 cursor-pointer relative group"
+                  className="bg-white border border-[#E5E7EB] rounded-[8px] p-4 sm:p-5 transition-all hover:border-[#4338ca]/40 cursor-pointer relative group"
                   title="Click to copy License Key"
                 >
                   <p className="text-xs sm:text-sm text-slate-700 font-normal">
                     {lic.plan}
                   </p>
-                  <p className="text-base sm:text-[17px] font-bold text-[#6D28D9] tracking-wide mt-2">
+                  <p className="text-base sm:text-[17px] font-bold text-[#4338ca] tracking-wide mt-2">
                     {lic.license_id}
                   </p>
                   

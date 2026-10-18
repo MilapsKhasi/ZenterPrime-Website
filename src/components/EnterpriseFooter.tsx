@@ -27,7 +27,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onScrollTo('features')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Features &amp; Vouchers
                 </button>
@@ -35,7 +35,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onScrollTo('gst-billing')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   GST Billing Engine
                 </button>
@@ -43,7 +43,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onScrollTo('pricing')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Lifetime Pricing
                 </button>
@@ -51,7 +51,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onScrollTo('download')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Download Setup 7.4
                 </button>
@@ -61,7 +61,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
                   href="https://github.com/MilapsKhasi/ZenterPrime-7.4/releases/tag/release-7.4"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#6D28D9] transition-colors inline-block"
+                  className="hover:text-[#4338ca] transition-colors inline-block"
                 >
                   Changelog &amp; Beta Notes
                 </a>
@@ -78,7 +78,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onNavigate('reactivate')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Activate License
                 </button>
@@ -86,7 +86,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onNavigate('renew')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Renew Support Subscription
                 </button>
@@ -94,7 +94,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onScrollTo('backup-restore')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Backup &amp; Restore Guide
                 </button>
@@ -102,7 +102,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onOpenModal('contact')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Contact Desk &amp; Help
                 </button>
@@ -110,7 +110,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onScrollTo('faq')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Knowledge Base &amp; FAQ
                 </button>
@@ -127,7 +127,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onOpenModal('about')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   About ZenterPrime
                 </button>
@@ -140,7 +140,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               <li>
                 <button 
                   onClick={() => onScrollTo('advantages')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Why Desktop Architecture
                 </button>
@@ -163,7 +163,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
                 <button 
                   id="footer-btn-privacy"
                   onClick={() => onOpenModal('privacy')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Privacy Policy
                 </button>
@@ -172,7 +172,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
                 <button 
                   id="footer-btn-terms"
                   onClick={() => onOpenModal('terms')}
-                  className="hover:text-[#6D28D9] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
                   Terms of Service
                 </button>
@@ -192,7 +192,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
         {/* Bottom Bar */}
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-[4px] bg-[#6D28D9] text-white flex items-center justify-center font-bold font-fredoka text-xs">
+            <div className="w-5 h-5 rounded-[4px] bg-[#4338ca] text-white flex items-center justify-center font-bold font-fredoka text-xs">
               Z
             </div>
             <span className="font-semibold text-slate-800">ZenterPrime 7.4 Desktop</span>

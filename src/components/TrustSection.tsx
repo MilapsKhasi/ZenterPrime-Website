@@ -74,7 +74,7 @@ export const TrustSection: React.FC = () => {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#6D28D9] text-white flex items-center justify-center font-bold text-2xl sm:text-3xl shadow-md border-4 border-white ring-4 ring-purple-100"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#4338ca] text-white flex items-center justify-center font-bold text-2xl sm:text-3xl shadow-md border-4 border-white ring-4 ring-purple-100"
             >
               Z
             </motion.div>
@@ -91,10 +91,10 @@ export const TrustSection: React.FC = () => {
               transition={{ duration: 0.4 }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-5 sm:p-6 shadow-xs flex flex-col items-start text-left max-w-sm ml-auto w-full"
             >
-              <div className="w-9 h-9 rounded-[6px] bg-purple-50 text-[#6D28D9] flex items-center justify-center mb-3">
+              <div className="w-9 h-9 rounded-[6px] bg-purple-50 text-[#4338ca] flex items-center justify-center mb-3">
                 <FileText className="w-5 h-5 stroke-[2]" />
               </div>
-              <h3 className="text-base sm:text-lg font-normal text-[#6D28D9] mb-1.5 leading-snug">
+              <h3 className="text-base sm:text-lg font-normal text-[#4338ca] mb-1.5 leading-snug">
                 GST Billing Ready
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

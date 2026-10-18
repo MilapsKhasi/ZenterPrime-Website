@@ -47,7 +47,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         {/* Section Header from Screenshot (15).png */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
-            <span className="text-[#6D28D9]">Transparent Pricing</span> for Indian Businesses
+            <span className="text-[#4338ca]">Transparent Pricing</span> for Indian Businesses
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
             Protect your shop records with instant local compression, USB drive export, and one-click data recovery.
@@ -66,7 +66,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               <h3 className="text-base font-normal text-slate-900">
                 Educational
               </h3>
-              <div className="text-3xl font-bold text-[#6D28D9] my-1">
+              <div className="text-3xl font-bold text-[#4338ca] my-1">
                 ₹0
               </div>
               <p className="text-xs text-slate-500 mb-6">
@@ -104,10 +104,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           {/* 2. Standard Lifetime (RECOMMENDED) */}
           <div 
             id="card-pricing-standard"
-            className="bg-white border-2 border-[#6D28D9] rounded-[10px] p-6 sm:p-7 flex flex-col justify-between shadow-md text-center relative mt-4 md:mt-0"
+            className="bg-white border-2 border-[#4338ca] rounded-[10px] p-6 sm:p-7 flex flex-col justify-between shadow-md text-center relative mt-4 md:mt-0"
           >
             {/* Top Floating Badge */}
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#6D28D9] text-white px-3 py-1 rounded-[4px] text-[10px] font-bold tracking-wider uppercase shadow-xs">
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#4338ca] text-white px-3 py-1 rounded-[4px] text-[10px] font-bold tracking-wider uppercase shadow-xs">
               RECOMMENDED
             </div>
 
@@ -115,7 +115,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               <h3 className="text-base font-normal text-slate-900 mt-1">
                 Standard Lifetime
               </h3>
-              <div className="text-3xl font-bold text-[#6D28D9] my-1">
+              <div className="text-3xl font-bold text-[#4338ca] my-1">
                 ₹14,999
               </div>
               <p className="text-xs text-slate-500 mb-6">
@@ -146,7 +146,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             <button
               id="btn-pricing-standard"
               onClick={() => onSelectPlan(PLANS.standard)}
-              className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] shadow-xs transition-colors cursor-pointer"
+              className="w-full bg-[#4338ca] hover:bg-[#5B21B6] text-white text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] shadow-xs transition-colors cursor-pointer"
             >
               Get Started
             </button>
@@ -161,7 +161,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               <h3 className="text-base font-normal text-slate-900">
                 Professional Lifetime
               </h3>
-              <div className="text-3xl font-bold text-[#6D28D9] my-1">
+              <div className="text-3xl font-bold text-[#4338ca] my-1">
                 ₹18,999
               </div>
               <p className="text-xs text-slate-500 mb-6">

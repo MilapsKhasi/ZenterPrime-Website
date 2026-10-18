@@ -149,7 +149,7 @@ export const Modals: React.FC<ModalsProps> = ({
         {activeModal === 'get-started' && (
           <div id="get-started-popup-modal">
             <div className="mb-5">
-              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-[#4338ca] uppercase tracking-wider block mb-1">
                 Evaluation Options
               </span>
               <h3 
@@ -170,7 +170,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <div className="bg-[#FCFDFE] border border-[#E5E7EB] rounded-[6px] p-4">
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-[4px] bg-[#6D28D9] text-white flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-[4px] bg-[#4338ca] text-white flex items-center justify-center shrink-0">
                       <Download className="w-4 h-4" />
                     </div>
                     <div>
@@ -194,7 +194,7 @@ export const Modals: React.FC<ModalsProps> = ({
                 <button
                   id="btn-download-zenterprime-74"
                   onClick={handleDownloadExe}
-                  className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white font-semibold py-2.5 px-4 rounded-[6px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="w-full bg-[#4338ca] hover:bg-[#5B21B6] text-white font-semibold py-2.5 px-4 rounded-[6px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download ZenterPrime 7.4</span>
@@ -205,7 +205,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <div className="bg-[#FCFDFE] border border-[#E5E7EB] rounded-[6px] p-4">
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-[4px] bg-[#F3F4F6] text-[#6D28D9] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-[4px] bg-[#F3F4F6] text-[#4338ca] flex items-center justify-center shrink-0">
                       <Laptop className="w-4 h-4" />
                     </div>
                     <div>
@@ -267,7 +267,7 @@ export const Modals: React.FC<ModalsProps> = ({
                 href={GITHUB_RELEASE_PAGE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#6D28D9] hover:underline font-medium inline-flex items-center gap-1"
+                className="text-[#4338ca] hover:underline font-medium inline-flex items-center gap-1"
               >
                 <span>GitHub Releases</span>
                 <ExternalLink className="w-3 h-3" />
@@ -297,7 +297,7 @@ export const Modals: React.FC<ModalsProps> = ({
                     href={TRIAL_WEB_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white py-2.5 px-4 rounded-[6px] text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full bg-[#4338ca] hover:bg-[#5B21B6] text-white py-2.5 px-4 rounded-[6px] text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>Launch 14-Day Web Trial Now</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -343,7 +343,7 @@ export const Modals: React.FC<ModalsProps> = ({
                     href={TRIAL_WEB_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white font-semibold py-2 px-4 rounded-[6px] text-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                    className="w-full bg-[#4338ca] hover:bg-[#5B21B6] text-white font-semibold py-2 px-4 rounded-[6px] text-xs flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <span>Use Free Trial on Web Now</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -368,7 +368,7 @@ export const Modals: React.FC<ModalsProps> = ({
                         value={trialName}
                         onChange={(e) => setTrialName(e.target.value)}
                         placeholder="Your Name *"
-                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#4338ca] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
                       <input
                         id="plan-trial-email"
@@ -377,7 +377,7 @@ export const Modals: React.FC<ModalsProps> = ({
                         value={trialEmail}
                         onChange={(e) => setTrialEmail(e.target.value)}
                         placeholder="Email Address *"
-                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#4338ca] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
                     </div>
 
@@ -388,7 +388,7 @@ export const Modals: React.FC<ModalsProps> = ({
                         value={trialPhone}
                         onChange={(e) => setTrialPhone(e.target.value)}
                         placeholder="Phone / WhatsApp"
-                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#4338ca] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
                       <input
                         id="plan-trial-business"
@@ -396,7 +396,7 @@ export const Modals: React.FC<ModalsProps> = ({
                         value={trialBusiness}
                         onChange={(e) => setTrialBusiness(e.target.value)}
                         placeholder="Business Name"
-                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#6D28D9] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                        className="w-full bg-[#FCFDFE] border border-[#E5E7EB] focus:border-[#4338ca] rounded-[4px] px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none"
                       />
                     </div>
 
@@ -426,7 +426,7 @@ export const Modals: React.FC<ModalsProps> = ({
         {activeModal === 'contact' && (
           <div>
             <div className="mb-5">
-              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-[#4338ca] uppercase tracking-wider block mb-1">
                 Help &amp; Inquiries
               </span>
               <h3 className="text-xl font-normal text-slate-900">
@@ -446,7 +446,7 @@ export const Modals: React.FC<ModalsProps> = ({
                 </p>
                 <button
                   onClick={() => { setContactSubmitted(false); onClose(); }}
-                  className="bg-[#6D28D9] text-white px-4 py-2 rounded-[6px] text-xs font-semibold"
+                  className="bg-[#4338ca] text-white px-4 py-2 rounded-[6px] text-xs font-semibold"
                 >
                   Done
                 </button>
@@ -464,7 +464,7 @@ export const Modals: React.FC<ModalsProps> = ({
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
                     placeholder="e.g. Ramesh Patel"
-                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#6D28D9]"
+                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#4338ca]"
                   />
                 </div>
 
@@ -476,7 +476,7 @@ export const Modals: React.FC<ModalsProps> = ({
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
                     placeholder="ramesh@retailstore.com"
-                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#6D28D9]"
+                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#4338ca]"
                   />
                 </div>
 
@@ -488,13 +488,13 @@ export const Modals: React.FC<ModalsProps> = ({
                     value={contactMessage}
                     onChange={(e) => setContactMessage(e.target.value)}
                     placeholder="How can we assist your business?"
-                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#6D28D9] resize-none"
+                    className="w-full bg-[#FCFDFE] border border-[#E5E7EB] rounded-[4px] px-3 py-2 text-slate-900 focus:outline-none focus:border-[#4338ca] resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-[#6D28D9] hover:bg-[#5B21B6] text-white font-semibold py-2.5 px-4 rounded-[6px] transition-colors cursor-pointer"
+                  className="w-full bg-[#4338ca] hover:bg-[#5B21B6] text-white font-semibold py-2.5 px-4 rounded-[6px] transition-colors cursor-pointer"
                 >
                   Send Inquiry
                 </button>
@@ -507,7 +507,7 @@ export const Modals: React.FC<ModalsProps> = ({
         {activeModal === 'about' && (
           <div>
             <div className="mb-4">
-              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-[#4338ca] uppercase tracking-wider block mb-1">
                 Company Profile
               </span>
               <h3 className="text-xl font-normal text-slate-900">
@@ -536,7 +536,7 @@ export const Modals: React.FC<ModalsProps> = ({
         {activeModal === 'privacy' && (
           <div>
             <div className="mb-4">
-              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-[#4338ca] uppercase tracking-wider block mb-1">
                 Security &amp; Data
               </span>
               <h3 className="text-xl font-normal text-slate-900">
@@ -727,7 +727,7 @@ export const Modals: React.FC<ModalsProps> = ({
         {activeModal === 'terms' && (
           <div>
             <div className="mb-4">
-              <span className="text-xs font-semibold text-[#6D28D9] uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-[#4338ca] uppercase tracking-wider block mb-1">
                 License Terms
               </span>
               <h3 className="text-xl font-normal text-slate-900">
@@ -769,12 +769,12 @@ export const Modals: React.FC<ModalsProps> = ({
                 <span className="text-emerald-700">Active</span>
               </div>
               <div className="flex items-center justify-between bg-white border border-[#E5E7EB] rounded-[4px] p-2">
-                <span className="font-mono text-xs sm:text-sm font-bold text-[#6D28D9]">
+                <span className="font-mono text-xs sm:text-sm font-bold text-[#4338ca]">
                   {successData.licenseKey}
                 </span>
                 <button
                   onClick={() => handleCopyLicense(successData.licenseKey)}
-                  className="p-1 text-slate-500 hover:text-[#6D28D9] rounded"
+                  className="p-1 text-slate-500 hover:text-[#4338ca] rounded"
                   title="Copy Key"
                 >
                   {copiedKey ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
@@ -786,7 +786,7 @@ export const Modals: React.FC<ModalsProps> = ({
               <a
                 href={DOWNLOAD_EXE_URL}
                 download="ZenterPrime.Setup.7.4.0.exe"
-                className="flex-1 bg-[#6D28D9] hover:bg-[#5B21B6] text-white py-2.5 px-3 rounded-[6px] text-xs font-semibold inline-flex items-center justify-center gap-1.5"
+                className="flex-1 bg-[#4338ca] hover:bg-[#5B21B6] text-white py-2.5 px-3 rounded-[6px] text-xs font-semibold inline-flex items-center justify-center gap-1.5"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Download Setup.exe</span>

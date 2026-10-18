@@ -36,7 +36,7 @@ export const AppMockup: React.FC = () => {
           
           {/* Left: Window Title & Company Info */}
           <div className="flex items-center gap-2.5 shrink-0">
-            <div className="w-4 h-4 rounded-[3px] bg-[#6D28D9] flex items-center justify-center text-white font-fredoka text-[10px] font-bold">
+            <div className="w-4 h-4 rounded-[3px] bg-[#4338ca] flex items-center justify-center text-white font-fredoka text-[10px] font-bold">
               Z
             </div>
             <div className="flex items-center gap-2">
@@ -82,7 +82,7 @@ export const AppMockup: React.FC = () => {
             <button className="px-2 py-1 hover:bg-slate-100 rounded text-slate-800 font-medium">
               Inventory (F4)
             </button>
-            <button className="px-2 py-1 bg-purple-50 text-[#6D28D9] font-medium rounded border border-purple-100">
+            <button className="px-2 py-1 bg-purple-50 text-[#4338ca] font-medium rounded border border-purple-100">
               GST Portal (F5)
             </button>
             <button className="px-2 py-1 hover:bg-slate-100 rounded text-slate-800 font-medium">
@@ -103,7 +103,7 @@ export const AppMockup: React.FC = () => {
                 className="bg-[#F9F9F9] border border-[#E5E7EB] rounded-[4px] pl-6 pr-2 py-0.5 text-xs text-slate-700 w-52 placeholder:text-slate-400"
               />
             </div>
-            <button className="bg-[#6D28D9] hover:bg-[#5B21B6] text-white px-2.5 py-1 rounded-[4px] font-medium text-xs flex items-center gap-1">
+            <button className="bg-[#4338ca] hover:bg-[#5B21B6] text-white px-2.5 py-1 rounded-[4px] font-medium text-xs flex items-center gap-1">
               <Plus className="w-3 h-3" />
               <span>Sales Bill (F8)</span>
             </button>
@@ -140,7 +140,7 @@ export const AppMockup: React.FC = () => {
                     onClick={() => setActiveMenu(item.id)}
                     className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-[4px] text-xs font-medium text-left transition-colors ${
                       isSelected 
-                        ? 'bg-[#6D28D9] text-white' 
+                        ? 'bg-[#4338ca] text-white' 
                         : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                     }`}
                   >
@@ -185,7 +185,7 @@ export const AppMockup: React.FC = () => {
               </div>
               <div className="bg-white border border-[#E5E7EB] rounded-[6px] p-2.5">
                 <span className="text-[11px] text-slate-500 block">Net GST Liability (CGST+SGST)</span>
-                <span className="text-base sm:text-lg font-bold text-[#6D28D9] tabular-nums">₹28,640.00</span>
+                <span className="text-base sm:text-lg font-bold text-[#4338ca] tabular-nums">₹28,640.00</span>
                 <span className="text-[10px] text-purple-700 font-medium block mt-0.5">Input Tax Credit: ₹14,200</span>
               </div>
             </div>
@@ -199,7 +199,7 @@ export const AppMockup: React.FC = () => {
                   </span>
                   <span className="text-[10px] text-slate-500">Showing last 5 of 142 vouchers</span>
                 </div>
-                <button className="text-[11px] text-[#6D28D9] hover:underline font-medium">
+                <button className="text-[11px] text-[#4338ca] hover:underline font-medium">
                   View Full Sales Book (F8) →
                 </button>
               </div>
