@@ -194,7 +194,7 @@ export const Modals: React.FC<ModalsProps> = ({
                 <button
                   id="btn-download-zenterprime-74"
                   onClick={handleDownloadExe}
-                  className="w-full bg-[#4338ca] hover:bg-[#5B21B6] text-white font-semibold py-2.5 px-4 rounded-[6px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                  className="primary-btn w-full text-white font-semibold py-2.5 px-4 rounded-[6px] text-xs flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download ZenterPrime 7.4</span>
@@ -231,7 +231,7 @@ export const Modals: React.FC<ModalsProps> = ({
                   href={TRIAL_WEB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold py-2.5 px-4 rounded-[6px] text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="secondary-btn w-full font-semibold py-2.5 px-4 rounded-[6px] text-xs flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Start 14-days web trial</span>
                   <ExternalLink className="w-3.5 h-3.5 text-slate-500" />
