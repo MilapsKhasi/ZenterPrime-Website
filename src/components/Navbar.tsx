@@ -139,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button 
               id="nav-btn-download-windows" 
               onClick={onGetStarted}
-              className="bg-[#4338ca] hover:bg-[#5B21B6] text-white px-4 py-2 text-[14px] font-medium transition-colors rounded-[6px] border border-transparent inline-flex items-center gap-2 cursor-pointer active:scale-98"
+              className="primary-btn text-white px-4 py-2 text-[14px] font-medium transition-colors rounded-[6px] border border-transparent inline-flex items-center gap-2 cursor-pointer active:scale-98"
             >
               <span>Download</span>
               <Download className="w-4 h-4" />
