@@ -60,7 +60,7 @@ export const DownloadSection: React.FC = () => {
             <button
               id="btn-download-installer-page"
               onClick={handleDownload}
-              className="bg-[#4338ca] hover:bg-[#5B21B6] text-white px-6 py-2.5 rounded-[6px] text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-xs"
+              className="primary-btn text-white px-6 py-2.5 rounded-[6px] text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer shadow-xs"
             >
               <Download className="w-4 h-4" />
               <span>Download for Windows</span>
