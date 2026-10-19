@@ -95,7 +95,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             <button
               id="btn-pricing-educational"
               onClick={() => onSelectPlan(PLANS.educational)}
-              className="w-full bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] border border-[#E5E7EB] transition-colors cursor-pointer"
+              className="secondary-btn w-full text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] cursor-pointer"
             >
               Get Started Free
             </button>
@@ -146,7 +146,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             <button
               id="btn-pricing-standard"
               onClick={() => onSelectPlan(PLANS.standard)}
-              className="w-full bg-[#4338ca] hover:bg-[#5B21B6] text-white text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] shadow-xs transition-colors cursor-pointer"
+              className="primary-btn w-full text-white text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] shadow-xs cursor-pointer"
             >
               Get Started
             </button>
@@ -192,7 +192,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
             <button
               id="btn-pricing-professional"
               onClick={() => onSelectPlan(PLANS.professional)}
-              className="w-full bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] border border-[#E5E7EB] transition-colors cursor-pointer"
+              className="secondary-btn w-full text-xs sm:text-sm font-semibold py-2.5 px-4 rounded-[6px] cursor-pointer"
             >
               Get Started
             </button>
