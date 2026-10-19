@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={onGetStarted}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-[#4338ca] hover:bg-[#3730a3] text-white font-semibold text-sm sm:text-base transition-all duration-200 gap-2"
+              className="primary-btn w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base transition-all duration-200 gap-2 cursor-pointer"
             >
               <span>Download for Desktop</span>
               <ArrowRight className="w-4 h-4" />
