@@ -3,10 +3,16 @@ import { motion } from 'motion/react';
 import { ShieldCheck, Zap, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
+  isReleased?: boolean;
   onGetStarted?: () => void;
+  onViewCountdown?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
+export const Hero: React.FC<HeroProps> = ({
+  isReleased = false,
+  onGetStarted,
+  onViewCountdown,
+}) => {
   return (
     <section id="hero-section" className="relative pt-16 sm:pt-20 pb-16 sm:pb-24 bg-[#F9F9F9] overflow-hidden">
       {/* Background ambient glow */}
@@ -17,8 +23,12 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
         {/* Header & Text Content Restored */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 border border-purple-200/60 text-purple-700 text-xs sm:text-sm font-medium mb-6 shadow-sm">
-            <Zap className="w-4 h-4 text-purple-600 animate-pulse" />
-            <span>ZenterPrime v7.4 Desktop — Now Available Offline</span>
+            <Zap className="w-4 h-4 text-purple-600" />
+            <span>
+              {isReleased
+                ? 'ZenterPrime v7.4 Desktop — Released & Available Offline'
+                : 'ZenterPrime 7.4 Desktop — Launching 31 Dec 2026 (IST)'}
+            </span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15] mb-6">
@@ -31,10 +41,10 @@ export const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={onGetStarted}
+              onClick={isReleased ? onGetStarted : onViewCountdown}
               className="primary-btn w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base transition-all duration-200 gap-2 cursor-pointer"
             >
-              <span>Download for Desktop</span>
+              <span>{isReleased ? 'Download for Desktop' : 'View Launch Countdown'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <div className="flex items-center gap-6 text-xs text-gray-500 font-medium pt-2 sm:pt-0">

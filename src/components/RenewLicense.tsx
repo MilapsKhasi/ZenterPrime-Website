@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Search, RefreshCw, CheckCircle2, AlertCircle, Calendar, ShieldCheck, ArrowRight, ArrowLeft, Copy, Check, Sparkles, HelpCircle } from 'lucide-react';
 import { fetchLicensesByEmail, renewSupabaseLicense, LicenseRecord, getLastDayOfUpcomingMonth } from '../lib/supabase';
-import { DOWNLOAD_EXE_URL } from './Modals';
+import { RELEASE_CONFIG } from '../config/releaseConfig';
 
 interface RenewLicenseProps {
+  isReleased: boolean;
   onBackToHome: () => void;
   onNavigateToPricing: () => void;
 }
 
-export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavigateToPricing }) => {
+export const RenewLicense: React.FC<RenewLicenseProps> = ({ isReleased, onBackToHome, onNavigateToPricing }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
@@ -308,14 +309,20 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ onBackToHome, onNavi
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
             <span>Encrypted Supabase PostgreSQL License Verification</span>
           </div>
-          <a
-            href={DOWNLOAD_EXE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#3b28cc] hover:underline font-medium cursor-pointer"
-          >
-            Download ZenterPrime.Setup.7.4.0.exe
-          </a>
+          {isReleased ? (
+            <a
+              href={RELEASE_CONFIG.downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#3b28cc] hover:underline font-medium cursor-pointer"
+            >
+              Download {RELEASE_CONFIG.installerFileName}
+            </a>
+          ) : (
+            <span className="text-slate-500 font-medium">
+              Desktop release unlocks 31 Dec 2026, 00:00 IST
+            </span>
+          )}
         </div>
 
       </div>

@@ -12,13 +12,17 @@ import { FAQSection } from './components/FAQSection';
 import { EnterpriseFooter } from './components/EnterpriseFooter';
 import { RenewLicense } from './components/RenewLicense';
 import { ReactivateLicense } from './components/ReactivateLicense';
-import { Modals, ModalType, DOWNLOAD_EXE_URL } from './components/Modals';
+import { Modals, ModalType } from './components/Modals';
+import { LaunchCountdown } from './components/LaunchCountdown';
+import { useReleaseStatus } from './hooks/useReleaseStatus';
+import { isProductReleased, triggerReleaseDownload } from './config/releaseConfig';
 import { createSupabaseLicense } from './lib/supabase';
 
 export function App() {
+  const release = useReleaseStatus();
   const [currentView, setCurrentView] = useState<AppView>('landing');
   const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [selectedPlan, setSelectedPlan] = useState<PlanDetails>(PLANS.standard);
+  const [selectedPlan, setSelectedPlan] = useState<PlanDetails>(PLANS['standard-monthly']);
   const [successData, setSuccessData] = useState<{
     email: string;
     plan: PlanDetails;
@@ -77,10 +81,10 @@ export function App() {
     }
   };
 
-  // Plan selection from Pricing section -> opens Plan Under Development Popup
+  // Plan selection from Pricing section -> opens Checkout / Account Creation Flow
   const handleSelectPlan = (plan: PlanDetails) => {
     setSelectedPlan(plan);
-    setActiveModal('plan-development');
+    setActiveModal('checkout');
   };
 
   // Payment success handler -> inserts into Supabase 'licenses' table & downloads installer
@@ -102,18 +106,9 @@ export function App() {
     
     setActiveModal('license-success');
 
-    // Automatically trigger installer download on user's computer
-    try {
-      const link = document.createElement('a');
-      link.href = DOWNLOAD_EXE_URL;
-      link.setAttribute('download', 'ZenterPrime.Setup.7.4.0.exe');
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (e) {
-      console.log('Automated download trigger error:', e);
+    // Automatically trigger installer download only when released
+    if (isProductReleased()) {
+      triggerReleaseDownload();
     }
   };
 
@@ -123,6 +118,7 @@ export function App() {
       {/* 1. Sticky Enterprise Navbar */}
       <Navbar 
         currentView={currentView}
+        isReleased={release.isReleased}
         onNavigate={navigateTo}
         onScrollTo={handleScrollTo}
         onGetStarted={() => setActiveModal('get-started')}
@@ -134,6 +130,7 @@ export function App() {
         {/* RENEW VIEW (/renew) */}
         {currentView === 'renew' && (
           <RenewLicense 
+            isReleased={release.isReleased}
             onBackToHome={() => navigateTo('landing')}
             onNavigateToPricing={() => {
               navigateTo('landing');
@@ -159,7 +156,16 @@ export function App() {
           <>
             {/* 1. Hero Section */}
             <Hero 
+              isReleased={release.isReleased}
               onGetStarted={() => setActiveModal('get-started')}
+              onViewCountdown={() => handleScrollTo('launch-countdown')}
+            />
+
+            {/* 1b. Cinematic Launch Countdown & Automatic Release Switch */}
+            <LaunchCountdown
+              release={release}
+              onExplorePricing={() => handleScrollTo('pricing')}
+              onScrollToDownload={() => handleScrollTo('download')}
             />
 
             {/* 2. Trust Section (4 Core Pillars) */}
@@ -184,8 +190,10 @@ export function App() {
               onSelectPlan={handleSelectPlan}
             />
 
-            {/* 8. Download Section (Desktop Distribution Installer) */}
-            <DownloadSection />
+            {/* 8. Download Section (Hidden before 31 Dec 2026 00:00 IST; revealed automatically on release) */}
+            {release.isReleased && (
+              <DownloadSection animateReveal={release.justReleased} />
+            )}
 
             {/* 11. FAQ Section (Bordered Accordions) */}
             <FAQSection />
@@ -196,6 +204,7 @@ export function App() {
 
       {/* Enterprise Footer (4 Columns + Legal) */}
       <EnterpriseFooter 
+        isReleased={release.isReleased}
         onNavigate={navigateTo}
         onScrollTo={handleScrollTo}
         onOpenModal={(modal) => setActiveModal(modal)}
@@ -204,7 +213,9 @@ export function App() {
       {/* Modals & Popups */}
       <Modals 
         activeModal={activeModal}
+        isReleased={release.isReleased}
         onClose={() => setActiveModal(null)}
+        onViewCountdown={() => handleScrollTo('launch-countdown')}
         selectedPlan={selectedPlan}
         onPlanChange={setSelectedPlan}
         onPaymentSuccess={handlePaymentSuccess}

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Download, ShieldCheck } from 'lucide-react';
+import { Menu, X, Download, Clock } from 'lucide-react';
 
 export type AppView = 'landing' | 'renew' | 'reactivate';
 
 interface NavbarProps {
   currentView: AppView;
+  isReleased: boolean;
   onNavigate: (view: AppView) => void;
   onScrollTo: (sectionId: string) => void;
   onGetStarted: () => void;
@@ -12,6 +13,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ 
   currentView, 
+  isReleased,
   onNavigate, 
   onScrollTo, 
   onGetStarted 
@@ -131,18 +133,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-activate-license"
               onClick={() => onNavigate('reactivate')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
+              className="hidden text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
             >
               Reactivate Existing License
             </button>
 
             <button 
               id="nav-btn-download-windows" 
-              onClick={onGetStarted}
+              onClick={isReleased ? onGetStarted : () => handleSectionClick('launch-countdown')}
               className="primary-btn text-white px-4 py-2 text-[14px] font-medium transition-colors rounded-[6px] border border-transparent inline-flex items-center gap-2 cursor-pointer active:scale-98"
             >
-              <span>Download</span>
-              <Download className="w-4 h-4" />
+              <span>{isReleased ? 'Download' : 'Coming Soon'}</span>
+              {isReleased ? <Download className="w-4 h-4" /> : <Clock className="w-4 h-4" />}
             </button>
           </div>
 
@@ -188,10 +190,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
           <button 
             id="mobile-nav-link-download" 
-            onClick={() => { setMobileMenuOpen(false); handleSectionClick('download'); }}
+            onClick={() => { setMobileMenuOpen(false); handleSectionClick(isReleased ? 'download' : 'launch-countdown'); }}
             className="w-full text-left text-slate-800 hover:text-[#4338ca] text-sm font-medium py-1.5"
           >
-            Download
+            {isReleased ? 'Download' : 'Launch Countdown'}
           </button>
           <button 
             id="mobile-nav-link-support" 
@@ -211,10 +213,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button 
               id="mobile-nav-btn-download" 
-              onClick={() => { setMobileMenuOpen(false); onGetStarted(); }}
+              onClick={() => { setMobileMenuOpen(false); isReleased ? onGetStarted() : handleSectionClick('launch-countdown'); }}
               className="w-full text-center bg-[#4338ca] hover:bg-[#5B21B6] text-white px-4 py-2.5 text-sm font-medium rounded-[6px] block cursor-pointer"
             >
-              Download for Windows
+              {isReleased ? 'Download for Windows' : 'View Launch Countdown'}
             </button>
           </div>
         </div>

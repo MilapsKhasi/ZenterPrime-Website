@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -41,6 +41,15 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
   transition-property: all;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   transition-duration: 200ms;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Primary Button with Hover Wipe Animation */
@@ -100,3 +109,23 @@ h1 *, h2 *, h3 *, h4 *, h5 *, h6 *,
   border-color: #c7d2fe;
   color: #4338ca;
 }
+
+/* Scoped cinematic countdown display typography & subtle film grain */
+.countdown-display,
+.countdown-display * {
+  font-family: "Barlow Condensed", "Inter", sans-serif !important;
+}
+
+.countdown-grain {
+  opacity: 0.035;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.85) 0.5px, transparent 0.5px);
+  background-size: 4px 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-btn::before,
+  .secondary-btn::before {
+    transition: none;
+  }
+}
+

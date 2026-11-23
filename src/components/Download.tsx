@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { Download, Copy, Check } from 'lucide-react';
-import { DOWNLOAD_EXE_URL } from './Modals';
+import { RELEASE_CONFIG, triggerReleaseDownload } from '../config/releaseConfig';
 
-export const DownloadSection: React.FC = () => {
+interface DownloadSectionProps {
+  animateReveal?: boolean;
+}
+
+export const DownloadSection: React.FC<DownloadSectionProps> = ({ animateReveal = false }) => {
   const [copiedChecksum, setCopiedChecksum] = useState(false);
 
-  const checksumValue = 'e8b15fa316d2b49c0d381fc285c5b967a14e9f7823e592070dc823298c414fa9';
+  const checksumValue = RELEASE_CONFIG.sha256;
 
   const handleCopyChecksum = () => {
     navigator.clipboard.writeText(checksumValue);
@@ -13,23 +18,21 @@ export const DownloadSection: React.FC = () => {
     setTimeout(() => setCopiedChecksum(false), 2000);
   };
 
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = DOWNLOAD_EXE_URL;
-    link.download = 'ZenterPrime.Setup.7.4.0.exe';
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
-    <section id="download" className="py-16 sm:py-20 bg-white border-b border-[#E5E7EB]">
+    <motion.section
+      id="download"
+      initial={animateReveal ? { opacity: 0, y: 20 } : false}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+      className="py-16 sm:py-20 bg-white border-b border-[#E5E7EB]"
+    >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header from Screenshot (16).png */}
+        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 mb-2">
+            Released · Now Available
+          </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
             Download <span className="text-[#4338ca]">ZenterPrime 7.4</span> for Windows
           </h2>
@@ -38,7 +41,7 @@ export const DownloadSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Main Installer Box matching Screenshot (16).png */}
+        {/* Main Installer Box */}
         <div className="max-w-3xl mx-auto bg-white border border-[#E5E7EB] rounded-[10px] overflow-hidden shadow-2xs">
           
           {/* Top Row: ZenterPrime Installer & Download Button */}
@@ -52,14 +55,14 @@ export const DownloadSection: React.FC = () => {
                   ZenterPrime Installer
                 </h3>
                 <span className="text-xs text-slate-500">
-                  Version 7.4.0 • Standalone Setup (.exe)
+                  Version {RELEASE_CONFIG.version} • Standalone Setup (.exe)
                 </span>
               </div>
             </div>
 
             <button
               id="btn-download-installer-page"
-              onClick={handleDownload}
+              onClick={triggerReleaseDownload}
               className="primary-btn text-white px-6 py-2.5 rounded-[6px] text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 cursor-pointer shadow-xs"
             >
               <Download className="w-4 h-4" />
@@ -69,7 +72,6 @@ export const DownloadSection: React.FC = () => {
 
           {/* Bottom Row: 3 Equal Specification Boxes */}
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[#E5E7EB] bg-[#FCFCFD]">
-            {/* Box 1: Operating System */}
             <div className="p-5 sm:p-6 text-center">
               <span className="block text-sm font-bold text-slate-900 mb-1">
                 Operating System
@@ -79,7 +81,6 @@ export const DownloadSection: React.FC = () => {
               </span>
             </div>
 
-            {/* Box 2: Memory */}
             <div className="p-5 sm:p-6 text-center">
               <span className="block text-sm font-bold text-slate-900 mb-1">
                 Memory
@@ -89,7 +90,6 @@ export const DownloadSection: React.FC = () => {
               </span>
             </div>
 
-            {/* Box 3: Storage */}
             <div className="p-5 sm:p-6 text-center">
               <span className="block text-sm font-bold text-slate-900 mb-1">
                 Storage
@@ -127,7 +127,7 @@ export const DownloadSection: React.FC = () => {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -2,12 +2,14 @@ import React from 'react';
 import { AppView } from './Navbar';
 
 interface EnterpriseFooterProps {
+  isReleased: boolean;
   onNavigate: (view: AppView) => void;
   onScrollTo: (sectionId: string) => void;
   onOpenModal: (modalName: 'about' | 'privacy' | 'terms' | 'contact') => void;
 }
 
 export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
+  isReleased,
   onNavigate,
   onScrollTo,
   onOpenModal
@@ -50,10 +52,10 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
               </li>
               <li>
                 <button 
-                  onClick={() => onScrollTo('download')}
+                  onClick={() => onScrollTo(isReleased ? 'download' : 'launch-countdown')}
                   className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
-                  Download Setup 7.4
+                  {isReleased ? 'Download Setup 7.4' : 'Launch Countdown (31 Dec)'}
                 </button>
               </li>
               <li>
