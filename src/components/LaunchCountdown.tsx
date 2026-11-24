@@ -75,12 +75,11 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({
               </div>
 
               {/* Cinematic Headline */}
-              <div className="countdown-display text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-[0.98] text-balance mb-4">
-                ZenterPrime 7.4 Official Release
+              <div className="mb-10 sm:mb-12 text-center">
+                <div className="countdown-lovelo text-4xl sm:text-5xl lg:text-6xl uppercase tracking-[0.04em] text-white leading-none">
+                  ZENTERPRIME 7.4
+                </div>
               </div>
-              <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 sm:mb-12">
-                Offline-first Windows accounting, GST billing, and inventory control — engineered for speed and complete local data ownership. Unlocking globally on 31 December 2026 at 00:00 IST.
-              </p>
 
               {/* Monumental 4-Unit Countdown Grid */}
               <div
@@ -139,8 +138,13 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({
                 <span className="h-[1px] w-8 bg-emerald-400/50" aria-hidden="true" />
               </div>
 
-              <div className="countdown-display text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-[0.98] text-balance mb-4">
-                ZenterPrime 7.4 Is Now Live
+              <div className="mb-5 text-center">
+                <div className="countdown-lovelo text-4xl sm:text-5xl lg:text-6xl uppercase tracking-[0.04em] text-white leading-none mb-2.5 sm:mb-3">
+                  ZENTERPRIME 7.4
+                </div>
+                <div className="text-lg sm:text-2xl lg:text-[1.75rem] font-normal tracking-normal text-slate-100 leading-snug">
+                  Official Release — Now Live
+                </div>
               </div>
               <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
                 The wait is over. ZenterPrime {RELEASE_CONFIG.version} Desktop for Windows is officially released and ready for offline installation.
