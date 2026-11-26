@@ -38,20 +38,8 @@ const CountdownUnitCard = React.memo<CountdownUnitCardProps>(
       }}
       className="relative rounded-[10px] bg-gradient-to-b from-[#141724] to-[#0B0D14] border border-white/12 px-4 py-6 sm:py-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
     >
-      <div className="countdown-display tabular-nums text-5xl sm:text-6xl lg:text-[4.75rem] font-normal tracking-tight text-white leading-none select-none overflow-hidden">
-        {prefersReducedMotion ? (
-          <span>{value}</span>
-        ) : (
-          <motion.span
-            key={value}
-            initial={{ opacity: 0.65, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.24, ease: EASE_CINEMATIC }}
-            className="inline-block"
-          >
-            {value}
-          </motion.span>
-        )}
+      <div className="countdown-display tabular-nums text-5xl sm:text-6xl lg:text-[4.75rem] font-normal tracking-tight text-white leading-none select-none">
+        <span>{value}</span>
       </div>
       <div className="mt-3 pt-2.5 border-t border-white/10 text-[11px] sm:text-xs uppercase tracking-[0.25em] text-slate-400 font-semibold">
         {label}
