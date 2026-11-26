@@ -70,10 +70,10 @@ export const TrustSection: React.FC = () => {
           {/* Central Purple "Z" Circle Node */}
           <div className="absolute z-20 flex items-center justify-center">
             <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#4338ca] text-white flex items-center justify-center font-bold text-2xl sm:text-3xl shadow-md border-4 border-white ring-4 ring-purple-100"
             >
               Z
@@ -85,10 +85,10 @@ export const TrustSection: React.FC = () => {
             
             {/* Top-Left: GST Billing Ready */}
             <motion.div 
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-5 sm:p-6 shadow-xs flex flex-col items-start text-left max-w-sm ml-auto w-full"
             >
               <div className="w-9 h-9 rounded-[6px] bg-purple-50 text-[#4338ca] flex items-center justify-center mb-3">
@@ -104,10 +104,10 @@ export const TrustSection: React.FC = () => {
 
             {/* Top-Right: Party Ledgers */}
             <motion.div 
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.42, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-5 sm:p-6 shadow-xs flex flex-col items-start text-left max-w-sm mr-auto w-full"
             >
               <div className="w-9 h-9 rounded-[6px] bg-blue-50 text-[#2563EB] flex items-center justify-center mb-3">
@@ -123,10 +123,10 @@ export const TrustSection: React.FC = () => {
 
             {/* Bottom-Left: Inventory & Stock */}
             <motion.div 
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.42, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-5 sm:p-6 shadow-xs flex flex-col items-start text-left max-w-sm ml-auto w-full mt-2"
             >
               <div className="w-9 h-9 rounded-[6px] bg-teal-50 text-[#0D9488] flex items-center justify-center mb-3">
@@ -142,10 +142,10 @@ export const TrustSection: React.FC = () => {
 
             {/* Bottom-Right: Cashbook Reports */}
             <motion.div 
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.42, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-5 sm:p-6 shadow-xs flex flex-col items-start text-left max-w-sm mr-auto w-full mt-2"
             >
               <div className="w-9 h-9 rounded-[6px] bg-emerald-50 text-[#16A34A] flex items-center justify-center mb-3">

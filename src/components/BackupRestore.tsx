@@ -42,10 +42,10 @@ export const BackupRestore: React.FC = () => {
             return (
               <motion.div 
                 key={card.title}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 6 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: idx * 0.08 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.26, delay: idx * 0.04, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-white border border-[#E5E7EB] rounded-[10px] p-6 sm:p-7 pt-8 text-center relative shadow-2xs flex flex-col justify-between"
               >
                 {/* Floating Green Circle Icon */}

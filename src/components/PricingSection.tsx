@@ -69,10 +69,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
   return (
     <motion.section 
       id="pricing" 
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0.85, y: 5 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
       className="py-16 sm:py-20 bg-[#FCFCFD] border-b border-[#E5E7EB]"
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">

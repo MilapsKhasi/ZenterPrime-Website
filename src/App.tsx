@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { MotionConfig } from 'motion/react';
 import { Navbar, AppView } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { TrustSection } from './components/TrustSection';
@@ -211,7 +212,8 @@ export function App() {
   );
 
   return (
-    <div id="page-wrapper" className="min-h-screen bg-[#F9F9F9] flex flex-col text-slate-900 font-sans">
+    <MotionConfig reducedMotion="user">
+      <div id="page-wrapper" className="min-h-screen bg-[#F9F9F9] flex flex-col text-slate-900 font-sans">
       {/* 1. Sticky Enterprise Navbar */}
       <Navbar
         currentView={currentView}
@@ -277,7 +279,8 @@ export function App() {
         onPaymentSuccess={handlePaymentSuccess}
         successData={successData}
       />
-    </div>
+      </div>
+    </MotionConfig>
   );
 }
 

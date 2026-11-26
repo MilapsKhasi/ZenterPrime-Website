@@ -41,10 +41,10 @@ export const DesktopAdvantages: React.FC = () => {
           {cards.map((card, idx) => (
             <motion.div 
               key={card.title}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.3, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-6 sm:p-8 pt-8 relative shadow-2xs flex flex-col justify-between"
             >
               {/* Floating Green Circle Checkmark Icon */}

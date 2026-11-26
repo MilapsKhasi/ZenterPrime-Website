@@ -104,13 +104,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               Pricing
             </button>
             <button 
-              id="nav-link-license" 
-              onClick={() => handleSectionClick('pricing')}
-              className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"
-            >
-              License
-            </button>
-            <button 
               id="nav-link-support" 
               onClick={() => handleSectionClick('faq')}
               className="text-[14px] font-medium text-slate-700 hover:text-[#4338ca] transition-colors cursor-pointer"

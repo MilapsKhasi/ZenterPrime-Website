@@ -102,7 +102,13 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Heading, Subtitle & Modules List */}
-          <div className="lg:col-span-5 flex flex-col text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex flex-col text-left"
+          >
             <h2 className="text-3xl sm:text-4xl font-normal text-slate-900 tracking-tight leading-tight">
               Why choose <br />
               <span className="text-[#4338ca]">ZenterPrime ?</span>
@@ -142,15 +148,21 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: macOS-Style Register Card */}
-          <div className="lg:col-span-7 flex justify-center w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.44, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex justify-center w-full"
+          >
             <motion.div 
               key={currentData.id}
-              initial={{ opacity: 0, scale: 0.98 }}
+              initial={{ opacity: 0, scale: 0.985 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="w-full max-w-lg bg-white border border-[#E5E7EB] rounded-[12px] p-6 sm:p-8 shadow-sm"
             >
               {/* Top macOS 3 Colored Window Dots */}
@@ -192,7 +204,7 @@ export const WhyBusinessesChoose: React.FC<WhyBusinessesChooseProps> = () => {
               </div>
 
             </motion.div>
-          </div>
+          </motion.div>
 
         </div>
 

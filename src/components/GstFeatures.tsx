@@ -52,25 +52,31 @@ export const GstFeatures: React.FC = () => {
     <section id="gst-billing" className="py-16 sm:py-20 bg-[#FCFCFD] border-b border-[#E5E7EB]">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header from Screenshot (12).png */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-2xl mx-auto mb-14"
+        >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-slate-900 tracking-tight">
             GST Made <span className="text-[#4338ca]">Practical &amp; Automated</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-[620px] mx-auto leading-relaxed">
             Configure your company once and let ZenterPrime handle tax rates, intra-state splits, and audit reports on your desktop.
           </p>
-        </div>
+        </motion.div>
 
         {/* Row 1: 4 Cards with Floating Numbered Circles */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 mb-8 pt-4">
           {rowOne.map((item, idx) => (
             <motion.div
               key={item.num}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: idx * 0.08 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.34, delay: idx * 0.045, ease: [0.16, 1, 0.3, 1] }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-6 pt-7 text-center relative shadow-2xs flex flex-col justify-between"
             >
               {/* Floating Number Circle */}
@@ -93,10 +99,10 @@ export const GstFeatures: React.FC = () => {
           {rowTwo.map((item, idx) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: 0.2 + idx * 0.08 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.32, delay: 0.08 + idx * 0.045, ease: [0.16, 1, 0.3, 1] }}
               className="bg-white border border-[#E5E7EB] rounded-[10px] p-6 text-center shadow-2xs flex flex-col justify-between"
             >
               <h3 className="text-base font-normal text-slate-900 mb-2">
