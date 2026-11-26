@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Navbar, AppView } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { TrustSection } from './components/TrustSection';
@@ -14,15 +15,113 @@ import { RenewLicense } from './components/RenewLicense';
 import { ReactivateLicense } from './components/ReactivateLicense';
 import { Modals, ModalType } from './components/Modals';
 import { LaunchCountdown } from './components/LaunchCountdown';
+import { SeoHead } from './components/SeoHead';
 import { useReleaseStatus } from './hooks/useReleaseStatus';
 import { isProductReleased, triggerReleaseDownload } from './config/releaseConfig';
+import { getPageSeoByPath } from './config/seoConfig';
 import { createSupabaseLicense } from './lib/supabase';
+
+const SECTION_TO_ROUTE: Record<string, string> = {
+  features: '/features',
+  'gst-billing': '/gst-billing',
+  advantages: '/advantages',
+  'backup-restore': '/backup-restore',
+  pricing: '/pricing',
+  'launch-countdown': '/launch-countdown',
+  download: '/download',
+  faq: '/faq',
+  support: '/support',
+};
+
+interface LandingPageProps {
+  release: ReturnType<typeof useReleaseStatus>;
+  onGetStarted: () => void;
+  onScrollTo: (sectionId: string) => void;
+  onSelectPlan: (plan: PlanDetails) => void;
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({
+  release,
+  onGetStarted,
+  onScrollTo,
+  onSelectPlan,
+}) => {
+  const location = useLocation();
+  const seo = getPageSeoByPath(location.pathname, release.isReleased);
+
+  useEffect(() => {
+    if (seo.sectionId) {
+      const timer = window.setTimeout(() => {
+        const el = document.getElementById(seo.sectionId!);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 60);
+      return () => window.clearTimeout(timer);
+    }
+  }, [location.pathname, seo.sectionId]);
+
+  return (
+    <>
+      <SeoHead
+        pageName={seo.pageName}
+        description={seo.description}
+        structuredData={seo.structuredData}
+      />
+
+      {/* 1. Hero Section */}
+      <Hero
+        isReleased={release.isReleased}
+        onGetStarted={onGetStarted}
+        onViewCountdown={() => onScrollTo('launch-countdown')}
+      />
+
+      {/* 1b. Cinematic Launch Countdown & Automatic Release Switch */}
+      <LaunchCountdown
+        release={release}
+        onExplorePricing={() => onScrollTo('pricing')}
+        onScrollToDownload={() => onScrollTo('download')}
+      />
+
+      {/* 2. Trust Section (4 Core Pillars) */}
+      <TrustSection />
+
+      {/* 3. Why Businesses Choose (Two-column: 8 Features + Screenshot) */}
+      <WhyBusinessesChoose
+        onSelectPlan={() => onScrollTo('pricing')}
+      />
+
+      {/* 4. GST Features (Timeline & Statutory Pillars) */}
+      <GstFeatures />
+
+      {/* 5. Desktop Advantages (Offline First, Fast Performance, Data Ownership) */}
+      <DesktopAdvantages />
+
+      {/* 6. Backup & Restore (Data Security & Recovery) */}
+      <BackupRestore />
+
+      {/* 7. Pricing Section (Monthly / Yearly / Lifetime / Educational) */}
+      <PricingSection
+        onSelectPlan={onSelectPlan}
+      />
+
+      {/* 8. Download Section (Hidden before 31 Dec 2026 00:00 IST; revealed automatically on release) */}
+      {release.isReleased && (
+        <DownloadSection animateReveal={release.justReleased} />
+      )}
+
+      {/* 11. FAQ Section (Bordered Accordions) */}
+      <FAQSection />
+    </>
+  );
+};
 
 export function App() {
   const release = useReleaseStatus();
-  const [currentView, setCurrentView] = useState<AppView>('landing');
+  const location = useLocation();
+  const navigate = useNavigate();
   const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [selectedPlan, setSelectedPlan] = useState<PlanDetails>(PLANS['standard-monthly']);
+  const [selectedPlan, setSelectedPlan] = useState<PlanDetails>(PLANS['monthly']);
   const [successData, setSuccessData] = useState<{
     email: string;
     plan: PlanDetails;
@@ -30,55 +129,45 @@ export function App() {
     expiry?: string;
   } | null>(null);
 
-  // Sync with browser URL / hash for direct route access like /renew or #renew
+  const normalizedPath = location.pathname.toLowerCase();
+  const currentView: AppView =
+    normalizedPath === '/renew'
+      ? 'renew'
+      : normalizedPath === '/reactivate'
+      ? 'reactivate'
+      : 'landing';
+
+  // Backward-compatible redirect for legacy #renew / #reactivate hash URLs
   useEffect(() => {
-    const handleUrlChange = () => {
-      const path = window.location.pathname.toLowerCase();
-      const hash = window.location.hash.toLowerCase();
-
-      if (path === '/renew' || hash === '#renew' || hash === '#/renew') {
-        setCurrentView('renew');
-      } else if (path === '/reactivate' || hash === '#reactivate' || hash === '#/reactivate') {
-        setCurrentView('reactivate');
-      } else {
-        setCurrentView('landing');
-      }
-    };
-
-    handleUrlChange();
-    window.addEventListener('popstate', handleUrlChange);
-    window.addEventListener('hashchange', handleUrlChange);
-    return () => {
-      window.removeEventListener('popstate', handleUrlChange);
-      window.removeEventListener('hashchange', handleUrlChange);
-    };
-  }, []);
+    const hash = location.hash.toLowerCase();
+    if (hash === '#renew' || hash === '#/renew') {
+      navigate('/renew', { replace: true });
+    } else if (hash === '#reactivate' || hash === '#/reactivate') {
+      navigate('/reactivate', { replace: true });
+    }
+  }, [location.hash, navigate]);
 
   const navigateTo = (view: AppView) => {
-    setCurrentView(view);
     if (view === 'renew') {
-      window.history.pushState(null, '', '#renew');
+      navigate('/renew');
     } else if (view === 'reactivate') {
-      window.history.pushState(null, '', '#reactivate');
+      navigate('/reactivate');
     } else {
-      window.history.pushState(null, '', window.location.pathname.replace(/\/renew|\/reactivate/g, '') || '/');
+      navigate('/');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Smooth scroll handler for anchor links
+  // Route-aware smooth scroll handler for section links
   const handleScrollTo = (sectionId: string) => {
-    if (currentView !== 'landing') {
-      setCurrentView('landing');
-      window.history.pushState(null, '', '/');
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
+    const targetRoute = SECTION_TO_ROUTE[sectionId] || '/';
+    if (location.pathname.toLowerCase() !== targetRoute) {
+      navigate(targetRoute);
+    }
+    window.setTimeout(() => {
       const el = document.getElementById(sectionId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
+    }, 80);
   };
 
   // Plan selection from Pricing section -> opens Checkout / Account Creation Flow
@@ -87,15 +176,16 @@ export function App() {
     setActiveModal('checkout');
   };
 
-  // Payment success handler -> inserts into Supabase 'licenses' table & downloads installer
+  // Payment success handler -> inserts into Supabase 'licenses' table & downloads installer when released
   const handlePaymentSuccess = async (email: string, plan: PlanDetails) => {
-    const isMonthly = false; // All current plans focus on lifetime
-    
-    // Insert into Supabase table 'licenses'
+    const isMonthly = plan.id === 'monthly';
+
     const result = await createSupabaseLicense(email, plan.name, isMonthly);
 
-    const licenseKey = result.data?.license_id || `ZP-730-KEY-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
-    const expiry = result.data?.expiry || 'LIFETIME';
+    const licenseKey =
+      result.data?.license_id ||
+      `ZP-740-KEY-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+    const expiry = result.data?.expiry || (plan.isLifetime ? 'LIFETIME' : plan.period);
 
     setSuccessData({
       email,
@@ -103,20 +193,27 @@ export function App() {
       licenseKey,
       expiry,
     });
-    
+
     setActiveModal('license-success');
 
-    // Automatically trigger installer download only when released
     if (isProductReleased()) {
       triggerReleaseDownload();
     }
   };
 
+  const landingElement = (
+    <LandingPage
+      release={release}
+      onGetStarted={() => setActiveModal('get-started')}
+      onScrollTo={handleScrollTo}
+      onSelectPlan={handleSelectPlan}
+    />
+  );
+
   return (
     <div id="page-wrapper" className="min-h-screen bg-[#F9F9F9] flex flex-col text-slate-900 font-sans">
-      
       {/* 1. Sticky Enterprise Navbar */}
-      <Navbar 
+      <Navbar
         currentView={currentView}
         isReleased={release.isReleased}
         onNavigate={navigateTo}
@@ -124,86 +221,45 @@ export function App() {
         onGetStarted={() => setActiveModal('get-started')}
       />
 
-      {/* Main Dynamic View System */}
+      {/* Main React Router Views */}
       <main className="flex-1">
-        
-        {/* RENEW VIEW (/renew) */}
-        {currentView === 'renew' && (
-          <RenewLicense 
-            isReleased={release.isReleased}
-            onBackToHome={() => navigateTo('landing')}
-            onNavigateToPricing={() => {
-              navigateTo('landing');
-              setTimeout(() => handleScrollTo('pricing'), 100);
-            }}
+        <Routes>
+          <Route path="/" element={landingElement} />
+          <Route path="/features" element={landingElement} />
+          <Route path="/gst-billing" element={landingElement} />
+          <Route path="/advantages" element={landingElement} />
+          <Route path="/backup-restore" element={landingElement} />
+          <Route path="/pricing" element={landingElement} />
+          <Route path="/launch-countdown" element={landingElement} />
+          <Route path="/download" element={landingElement} />
+          <Route path="/faq" element={landingElement} />
+          <Route path="/support" element={landingElement} />
+          <Route
+            path="/renew"
+            element={
+              <RenewLicense
+                isReleased={release.isReleased}
+                onBackToHome={() => navigateTo('landing')}
+                onNavigateToPricing={() => handleScrollTo('pricing')}
+              />
+            }
           />
-        )}
-
-        {/* REACTIVATE VIEW (/reactivate) */}
-        {currentView === 'reactivate' && (
-          <ReactivateLicense 
-            onBackToHome={() => navigateTo('landing')}
-            onNavigateToPricing={() => {
-              navigateTo('landing');
-              setTimeout(() => handleScrollTo('pricing'), 100);
-            }}
-            onContactSupport={() => setActiveModal('contact')}
+          <Route
+            path="/reactivate"
+            element={
+              <ReactivateLicense
+                onBackToHome={() => navigateTo('landing')}
+                onNavigateToPricing={() => handleScrollTo('pricing')}
+                onContactSupport={() => setActiveModal('contact')}
+              />
+            }
           />
-        )}
-
-        {/* LANDING PAGE VIEW */}
-        {currentView === 'landing' && (
-          <>
-            {/* 1. Hero Section */}
-            <Hero 
-              isReleased={release.isReleased}
-              onGetStarted={() => setActiveModal('get-started')}
-              onViewCountdown={() => handleScrollTo('launch-countdown')}
-            />
-
-            {/* 1b. Cinematic Launch Countdown & Automatic Release Switch */}
-            <LaunchCountdown
-              release={release}
-              onExplorePricing={() => handleScrollTo('pricing')}
-              onScrollToDownload={() => handleScrollTo('download')}
-            />
-
-            {/* 2. Trust Section (4 Core Pillars) */}
-            <TrustSection />
-
-            {/* 3. Why Businesses Choose (Two-column: 8 Features + Screenshot) */}
-            <WhyBusinessesChoose 
-              onSelectPlan={() => handleScrollTo('pricing')}
-            />
-
-            {/* 4. GST Features (Timeline & Statutory Pillars) */}
-            <GstFeatures />
-
-            {/* 5. Desktop Advantages (Offline First, Fast Performance, Data Ownership) */}
-            <DesktopAdvantages />
-
-            {/* 6. Backup & Restore (Data Security & Recovery) */}
-            <BackupRestore />
-
-            {/* 7. Pricing Section (Lifetime Focus) */}
-            <PricingSection 
-              onSelectPlan={handleSelectPlan}
-            />
-
-            {/* 8. Download Section (Hidden before 31 Dec 2026 00:00 IST; revealed automatically on release) */}
-            {release.isReleased && (
-              <DownloadSection animateReveal={release.justReleased} />
-            )}
-
-            {/* 11. FAQ Section (Bordered Accordions) */}
-            <FAQSection />
-          </>
-        )}
-
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
       {/* Enterprise Footer (4 Columns + Legal) */}
-      <EnterpriseFooter 
+      <EnterpriseFooter
         isReleased={release.isReleased}
         onNavigate={navigateTo}
         onScrollTo={handleScrollTo}
@@ -211,7 +267,7 @@ export function App() {
       />
 
       {/* Modals & Popups */}
-      <Modals 
+      <Modals
         activeModal={activeModal}
         isReleased={release.isReleased}
         onClose={() => setActiveModal(null)}
@@ -221,7 +277,6 @@ export function App() {
         onPaymentSuccess={handlePaymentSuccess}
         successData={successData}
       />
-
     </div>
   );
 }

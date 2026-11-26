@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { fetchLicensesByEmail, LicenseRecord } from '../lib/supabase';
+import { SeoHead } from './SeoHead';
+import { getPageSeoByPath } from '../config/seoConfig';
 
 interface ReactivateLicenseProps {
   onBackToHome?: () => void;
@@ -71,8 +73,15 @@ export const ReactivateLicense: React.FC<ReactivateLicenseProps> = () => {
     }, 2000);
   };
 
+  const reactivateSeo = getPageSeoByPath('/reactivate', false);
+
   return (
     <div className="flex-1 bg-white min-h-[calc(100vh-70px)] flex flex-col items-center pt-16 sm:pt-24 pb-28 px-4">
+      <SeoHead
+        pageName={reactivateSeo.pageName}
+        description={reactivateSeo.description}
+        structuredData={reactivateSeo.structuredData}
+      />
       {/* Centered Heading */}
       <h1 className="text-2xl sm:text-[32px] font-normal text-[#111827] tracking-tight text-center mb-8">
         Reactivate your existing License

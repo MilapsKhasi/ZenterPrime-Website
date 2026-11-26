@@ -33,21 +33,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (currentView !== 'landing') {
-      onNavigate('landing');
-    }
+    onNavigate('landing');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSectionClick = (sectionId: string) => {
-    if (currentView !== 'landing') {
-      onNavigate('landing');
-      setTimeout(() => {
-        onScrollTo(sectionId);
-      }, 60);
-    } else {
-      onScrollTo(sectionId);
-    }
+    onScrollTo(sectionId);
   };
 
   return (

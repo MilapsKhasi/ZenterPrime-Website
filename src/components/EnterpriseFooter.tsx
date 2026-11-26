@@ -47,7 +47,7 @@ export const EnterpriseFooter: React.FC<EnterpriseFooterProps> = ({
                   onClick={() => onScrollTo('pricing')}
                   className="hover:text-[#4338ca] transition-colors cursor-pointer text-left"
                 >
-                  Lifetime Pricing
+                  Pricing &amp; Plans
                 </button>
               </li>
               <li>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Search, RefreshCw, CheckCircle2, AlertCircle, Calendar, ShieldCheck, ArrowRight, ArrowLeft, Copy, Check, Sparkles, HelpCircle } from 'lucide-react';
 import { fetchLicensesByEmail, renewSupabaseLicense, LicenseRecord, getLastDayOfUpcomingMonth } from '../lib/supabase';
 import { RELEASE_CONFIG } from '../config/releaseConfig';
+import { SeoHead } from './SeoHead';
+import { getPageSeoByPath } from '../config/seoConfig';
 
 interface RenewLicenseProps {
   isReleased: boolean;
@@ -90,8 +92,15 @@ export const RenewLicense: React.FC<RenewLicenseProps> = ({ isReleased, onBackTo
     setTimeout(() => setCopiedKey(false), 2000);
   };
 
+  const renewSeo = getPageSeoByPath('/renew', isReleased);
+
   return (
     <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <SeoHead
+        pageName={renewSeo.pageName}
+        description={renewSeo.description}
+        structuredData={renewSeo.structuredData}
+      />
       
       {/* Back button */}
       <button
