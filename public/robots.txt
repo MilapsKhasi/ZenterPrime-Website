@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zenterprime-official.vercel.app/sitemap.xml
