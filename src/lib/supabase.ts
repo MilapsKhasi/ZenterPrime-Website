@@ -1,5 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
+declare const __SUPABASE_URL_OVERRIDE__: string | undefined;
+declare const __SUPABASE_ANON_KEY_OVERRIDE__: string | undefined;
+
 function normalizeSupabaseAnonKey(rawKey: string, url: string): string {
   const cleaned = rawKey.trim().replace(/^["']|["']$/g, '');
   const jwtMatches = cleaned.match(/eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g);
@@ -29,11 +32,23 @@ function normalizeSupabaseAnonKey(rawKey: string, url: string): string {
   return jwtMatches[0];
 }
 
+const DEFAULT_PUBLIC_SUPABASE_URL = 'https://blbaolnlzohguwqiyflg.supabase.co';
+const DEFAULT_PUBLIC_SUPABASE_ANON_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsYmFvbG5sem9oZ3V3cWl5ZmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxMjY2ODgsImV4cCI6MjA4MzcwMjY4OH0.nGCG_M3-m2hNnP8Nu0aftZ1Ug0OheU5GmbGNr-Iwxxg';
+
 // Base URL clean up (removes trailing /rest/v1/ if user provided it)
 const envMeta = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
-const rawUrl = (envMeta.VITE_SUPABASE_URL || 'https://cjzllodvxinoknlwurkd.supabase.co').trim();
+const rawUrl = (
+  envMeta.VITE_SUPABASE_URL ||
+  (typeof __SUPABASE_URL_OVERRIDE__ !== 'undefined' ? __SUPABASE_URL_OVERRIDE__ : '') ||
+  DEFAULT_PUBLIC_SUPABASE_URL
+).trim();
 const supabaseUrl = rawUrl.replace(/\/rest\/v1\/?$/, '').replace(/\/$/, '');
-const rawAnonKey = (envMeta.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqemxsb2R2eGlub2tubHd1cmtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczODYzNjQsImV4cCI6MjEwMjk2MjM2NH0.t1CKOKfQKbIwTjrhzXuuQihQxsD2X7Uqk6XQi5RTSCs').trim();
+const rawAnonKey = (
+  envMeta.VITE_SUPABASE_ANON_KEY ||
+  (typeof __SUPABASE_ANON_KEY_OVERRIDE__ !== 'undefined' ? __SUPABASE_ANON_KEY_OVERRIDE__ : '') ||
+  DEFAULT_PUBLIC_SUPABASE_ANON_KEY
+).trim();
 const supabaseAnonKey = normalizeSupabaseAnonKey(rawAnonKey, supabaseUrl);
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
