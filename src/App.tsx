@@ -82,6 +82,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
         release={release}
         onExplorePricing={() => onScrollTo('pricing')}
         onScrollToDownload={() => onScrollTo('download')}
+        onOpenDownloadModal={onGetStarted}
       />
 
       {/* 2. Trust Section (4 Core Pillars) */}

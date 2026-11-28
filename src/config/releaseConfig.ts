@@ -64,7 +64,7 @@ export function getReleaseSnapshot(nowMs: number = Date.now()): ReleaseSnapshot 
   const diffMs = Math.max(0, LAUNCH_TIMESTAMP_MS - nowMs);
   const released = diffMs === 0;
 
-  const totalSeconds = Math.floor(diffMs / 1000);
+  const totalSeconds = released ? 0 : Math.ceil(diffMs / 1000);
   const days = Math.floor(totalSeconds / 86400);
   const hours = Math.floor((totalSeconds % 86400) / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);

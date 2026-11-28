@@ -40,7 +40,7 @@ export function useReleaseStatus(): ReleaseStatusState {
     };
 
     syncClock();
-    const intervalId = window.setInterval(syncClock, 500);
+    const intervalId = window.setInterval(syncClock, 200);
     const handleVisibility = () => {
       if (document.visibilityState === 'visible') {
         syncClock();
