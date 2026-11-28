@@ -1,10 +1,40 @@
 import { createClient } from '@supabase/supabase-js';
 
+function normalizeSupabaseAnonKey(rawKey: string, url: string): string {
+  const cleaned = rawKey.trim().replace(/^["']|["']$/g, '');
+  const jwtMatches = cleaned.match(/eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g);
+  if (!jwtMatches || jwtMatches.length === 0) {
+    return cleaned;
+  }
+  if (jwtMatches.length === 1) {
+    return jwtMatches[0];
+  }
+
+  const refMatch = url.match(/^https?:\/\/([a-z0-9-]+)\.supabase\.co/i);
+  const targetRef = refMatch?.[1]?.toLowerCase();
+  if (targetRef && typeof atob === 'function') {
+    for (const token of jwtMatches) {
+      try {
+        const payloadB64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+        const payload = JSON.parse(atob(payloadB64));
+        if (typeof payload?.ref === 'string' && payload.ref.toLowerCase() === targetRef) {
+          return token;
+        }
+      } catch {
+        // Ignore non-JSON token segment
+      }
+    }
+  }
+
+  return jwtMatches[0];
+}
+
 // Base URL clean up (removes trailing /rest/v1/ if user provided it)
 const envMeta = (typeof import.meta !== 'undefined' && (import.meta as any).env) || {};
 const rawUrl = (envMeta.VITE_SUPABASE_URL || 'https://cjzllodvxinoknlwurkd.supabase.co').trim();
 const supabaseUrl = rawUrl.replace(/\/rest\/v1\/?$/, '').replace(/\/$/, '');
-const supabaseAnonKey = (envMeta.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqemxsb2R2eGlub2tubHd1cmtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczODYzNjQsImV4cCI6MjEwMjk2MjM2NH0.t1CKOKfQKbIwTjrhzXuuQihQxsD2X7Uqk6XQi5RTSCs').trim();
+const rawAnonKey = (envMeta.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqemxsb2R2eGlub2tubHd1cmtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODczODYzNjQsImV4cCI6MjEwMjk2MjM2NH0.t1CKOKfQKbIwTjrhzXuuQihQxsD2X7Uqk6XQi5RTSCs').trim();
+const supabaseAnonKey = normalizeSupabaseAnonKey(rawAnonKey, supabaseUrl);
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -189,5 +219,45 @@ export async function reactivateSupabaseLicense(
     return { success: true };
   } catch (err: any) {
     return { success: false, error: err?.message || 'Reactivation failed' };
+  }
+}
+
+/**
+ * 5. Fetches authoritative PostgreSQL server time via public.get_server_time RPC
+ *    and compensates for half round-trip network latency using monotonic performance.now().
+ */
+export async function fetchSupabaseServerTimeMs(): Promise<{
+  success: boolean;
+  serverTimeMs?: number;
+  error?: string;
+}> {
+  try {
+    const reqStartPerf = performance.now();
+    const { data, error } = await supabase.rpc('get_server_time');
+    const reqEndPerf = performance.now();
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    if (typeof data !== 'string' && typeof data !== 'number') {
+      return { success: false, error: 'Invalid server timestamp response' };
+    }
+
+    const parsedMs = typeof data === 'number' ? data : Date.parse(data);
+    if (!Number.isFinite(parsedMs)) {
+      return { success: false, error: 'Unable to parse server timestamp' };
+    }
+
+    const halfRttMs = Math.max(0, (reqEndPerf - reqStartPerf) / 2);
+    return {
+      success: true,
+      serverTimeMs: Math.round(parsedMs + halfRttMs),
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      error: err?.message || 'Failed to fetch Supabase server time',
+    };
   }
 }

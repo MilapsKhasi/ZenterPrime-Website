@@ -158,6 +158,15 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({
     };
   }, [release.isReleased, release.justReleased, prefersReducedMotion]);
 
+  useEffect(() => {
+    if (!release.isReleased && phase !== 'counting') {
+      timeoutsRef.current.forEach((id) => window.clearTimeout(id));
+      timeoutsRef.current = [];
+      hasTriggeredSequenceRef.current = false;
+      setPhase('counting');
+    }
+  }, [release.isReleased, phase]);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -180,11 +189,11 @@ export const LaunchCountdown: React.FC<LaunchCountdownProps> = ({
     allowParallax && isCountdownActive ? [0.7, 1, 0.85] : [1, 1, 1]
   );
 
-  // Freeze strictly at 00 when countdown completes
-  const displayDays = phase === 'counting' ? padUnit(release.days) : '00';
-  const displayHours = phase === 'counting' ? padUnit(release.hours) : '00';
-  const displayMinutes = phase === 'counting' ? padUnit(release.minutes) : '00';
-  const displaySeconds = phase === 'counting' ? padUnit(release.seconds) : '00';
+  // Freeze strictly at 00 when countdown completes; show '--' until initial server sync finishes
+  const displayDays = !release.isSynced ? '--' : phase === 'counting' ? padUnit(release.days) : '00';
+  const displayHours = !release.isSynced ? '--' : phase === 'counting' ? padUnit(release.hours) : '00';
+  const displayMinutes = !release.isSynced ? '--' : phase === 'counting' ? padUnit(release.minutes) : '00';
+  const displaySeconds = !release.isSynced ? '--' : phase === 'counting' ? padUnit(release.seconds) : '00';
 
   const units = [
     { label: 'Days', value: displayDays },

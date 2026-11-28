@@ -1,4 +1,5 @@
 export interface ReleaseSnapshot {
+  isSynced: boolean;
   isReleased: boolean;
   targetTimestampMs: number;
   remainingMs: number;
@@ -56,12 +57,51 @@ const istLaunchDateFormatter = new Intl.DateTimeFormat('en-IN', {
   hour12: false,
 });
 
-export function isProductReleased(nowMs: number = Date.now()): boolean {
-  return nowMs >= LAUNCH_TIMESTAMP_MS;
+/**
+ * Monotonic anchor calibrated against authoritative Supabase PostgreSQL server time.
+ * Uses performance.now() elapsed deltas between server syncs so local clock edits cannot skew time.
+ */
+let serverTimeAnchor: { serverMs: number; perfMs: number } | null = null;
+
+export function setAuthoritativeServerTime(serverMs: number): void {
+  if (!Number.isFinite(serverMs)) return;
+  serverTimeAnchor = {
+    serverMs,
+    perfMs: performance.now(),
+  };
 }
 
-export function getReleaseSnapshot(nowMs: number = Date.now()): ReleaseSnapshot {
-  const diffMs = Math.max(0, LAUNCH_TIMESTAMP_MS - nowMs);
+export function getAuthoritativeNowMs(): number | null {
+  if (!serverTimeAnchor) return null;
+  const elapsedMs = Math.max(0, performance.now() - serverTimeAnchor.perfMs);
+  return serverTimeAnchor.serverMs + elapsedMs;
+}
+
+export function isProductReleased(nowMs?: number): boolean {
+  const authoritativeNow = nowMs ?? getAuthoritativeNowMs();
+  if (authoritativeNow === null) return false;
+  return authoritativeNow >= LAUNCH_TIMESTAMP_MS;
+}
+
+export function getReleaseSnapshot(nowMs?: number): ReleaseSnapshot {
+  const authoritativeNow = nowMs ?? getAuthoritativeNowMs();
+
+  if (authoritativeNow === null) {
+    return {
+      isSynced: false,
+      isReleased: false,
+      targetTimestampMs: LAUNCH_TIMESTAMP_MS,
+      remainingMs: LAUNCH_TIMESTAMP_MS,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      istCurrentFormatted: 'Syncing server time...',
+      istLaunchFormatted: `${istLaunchDateFormatter.format(new Date(LAUNCH_TIMESTAMP_MS))} IST`,
+    };
+  }
+
+  const diffMs = Math.max(0, LAUNCH_TIMESTAMP_MS - authoritativeNow);
   const released = diffMs === 0;
 
   const totalSeconds = released ? 0 : Math.ceil(diffMs / 1000);
@@ -71,6 +111,7 @@ export function getReleaseSnapshot(nowMs: number = Date.now()): ReleaseSnapshot 
   const seconds = totalSeconds % 60;
 
   return {
+    isSynced: true,
     isReleased: released,
     targetTimestampMs: LAUNCH_TIMESTAMP_MS,
     remainingMs: diffMs,
@@ -78,7 +119,7 @@ export function getReleaseSnapshot(nowMs: number = Date.now()): ReleaseSnapshot 
     hours,
     minutes,
     seconds,
-    istCurrentFormatted: `${istDateTimeFormatter.format(new Date(nowMs))} IST`,
+    istCurrentFormatted: `${istDateTimeFormatter.format(new Date(authoritativeNow))} IST`,
     istLaunchFormatted: `${istLaunchDateFormatter.format(new Date(LAUNCH_TIMESTAMP_MS))} IST`,
   };
 }
